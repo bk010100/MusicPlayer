@@ -2,10 +2,15 @@
 {
     class Song
     {
-        private int Id { get; set; }
-        private string Name { get; set; }
-        private string Author { get; set; }
-        private int Duration { get; set; }
-        private string FileName { get; set; }
+        private int Id;
+        private string name;
+        private string author;
+        private int duration;
+        private string fileName;
+
+        public string Name { get => name; set => name = value; }
+        public string Author { get => author; set => author = value; }
+        public int Duration { get => duration; set => duration = value; }
+        public string FileName { get => fileName; set => fileName = value; }
     }
 }

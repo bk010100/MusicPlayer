@@ -80,7 +80,7 @@
     <Compile Include="common\control\SongListView.xaml.cs">
       <DependentUpon>SongListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="common\util\SqlConnectionUtil.cs" />
+    <Compile Include="common\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
     <Compile Include="common\util\Mp3SongUtil.cs" />
     <Compile Include="model\model\PlayingSong.cs" />
@@ -94,6 +94,7 @@
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="viewmodel\PlaylistListViewModel.cs" />
+    <Compile Include="viewmodel\SongListViewModel.cs" />
     <Compile Include="view\form\FormHomepage.cs">
       <SubType>Form</SubType>
     </Compile>

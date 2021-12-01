@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Windows.Media;
 
-namespace MusicPlayer.view.form
+namespace MusicPlayer.view.ui
 {
     public partial class FormSongList : Form
     {
@@ -12,7 +13,8 @@ namespace MusicPlayer.view.form
 
         private void OnLoad(object sender, EventArgs e)
         {
-
+            
         }
+
     }
 }

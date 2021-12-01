@@ -7,17 +7,17 @@ using System.Windows.Forms;
 
 namespace MusicPlayer.view.ui
 {
-    public partial class PlaylistListForm : Form
+    public partial class FormPlaylistList : Form
     {
         private readonly PlaylistListViewModel viewModel = new PlaylistListViewModel();
 
-        public PlaylistListForm()
+        public FormPlaylistList()
         {
             InitializeComponent();
         }
 
 
-        private void PlaylistsFolderList_Load(object sender, EventArgs e)
+        private void OnLoad(object sender, EventArgs e)
         {
             List<string> list = viewModel.GetAllPlaylistNames();
             LoadAllPlaylists(list);

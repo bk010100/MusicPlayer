@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace MusicPlayer.view.form
+namespace MusicPlayer.view.ui
 {
     public partial class FormPlayingSongs : Form
     {

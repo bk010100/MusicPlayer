@@ -1,7 +1,7 @@
 ﻿
 namespace MusicPlayer.view.ui
 {
-    partial class PlaylistListForm
+    partial class FormPlaylistList
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace MusicPlayer.view.ui
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaylistListForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlaylistList));
             this.btnAddPlaylist = new System.Windows.Forms.Button();
             this.panelBackground = new MusicPlayer.common.component.GradientPanel();
             this.panelBackground.SuspendLayout();
@@ -88,7 +88,7 @@ namespace MusicPlayer.view.ui
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.PlaylistsFolderList_Load);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.panelBackground.ResumeLayout(false);
             this.ResumeLayout(false);
 

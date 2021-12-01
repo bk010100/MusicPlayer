@@ -1,4 +1,5 @@
 ﻿using MusicPlayer.view.ui;
+using MusicPlayer.view.ui;
 using System;
 using System.Windows.Forms;
 
@@ -8,7 +9,11 @@ namespace MusicPlayer
     {
 
         // Subforms
-        private readonly PlaylistListForm playListForm = new PlaylistListForm
+        private readonly FormPlaylistList formPlaylistList = new FormPlaylistList
+        {
+            TopLevel = false
+        };
+        private readonly FormSongList formSongList = new FormSongList
         {
             TopLevel = false
         };
@@ -41,20 +46,21 @@ namespace MusicPlayer
 
         private void OnClickBtnSongs(object sender, EventArgs e)
         {
-
+            formSongList.Parent = panelChildForm;
+            formSongList.Show();
         }
 
 
         private void OnClickBtnPlaylists(object sender, EventArgs e)
         {
-            playListForm.Parent = panelChildForm;
-            playListForm.Show();
+            formPlaylistList.Parent = panelChildForm;
+            formPlaylistList.Show();
         }
 
 
         private void OnClickBtnSettings(object sender, EventArgs e)
         {
-
+            
         }
 
 

@@ -9,10 +9,12 @@ namespace MusicPlayer.viewmodel
         private readonly SongRepository repository = new SongRepository();
         private List<Song> allSongs = new List<Song>();
 
-        public List<Song> getAllSongs()
+        public List<Song> GetAllSongs()
         {
             allSongs = repository.GetAllSongs();
             return allSongs;
         }
+
+
     }
 }

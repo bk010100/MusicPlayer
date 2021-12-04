@@ -9,10 +9,16 @@ namespace MusicPlayer.common.util
             return ConfigurationManager.ConnectionStrings["MusicPlayerDataSource"].ConnectionString;
         }
 
-       
+
         public static string GetAllFromTable(string tblName)
         {
             return "SELECT * FROM " + tblName;
+        }
+
+
+        public static string GetNameAuthorDurationFromTblSong()
+        {
+            return "SELECT name, author, duration from TblSong";
         }
     }
 }

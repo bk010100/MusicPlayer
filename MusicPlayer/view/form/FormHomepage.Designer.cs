@@ -47,8 +47,8 @@ namespace MusicPlayer
             this.imgIcon = new System.Windows.Forms.PictureBox();
             this.btnMinimizeApp = new System.Windows.Forms.Button();
             this.btnCloseApp = new System.Windows.Forms.Button();
-            this.panelBackground = new MusicPlayer.common.component.GradientPanel();
-            this.panelChildForm = new MusicPlayer.common.component.GradientPanel();
+            this.panelBackground = new MusicPlayer.common.control.GradientPanel();
+            this.panelChildForm = new MusicPlayer.common.control.GradientPanel();
             this.panelMenu.SuspendLayout();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).BeginInit();
@@ -297,8 +297,8 @@ namespace MusicPlayer
         private PictureBox imgIcon;
         private Button btnMinimizeApp;
         private Button btnCloseApp;
-        private common.component.GradientPanel panelBackground;
-        private common.component.GradientPanel panelChildForm;
+        private common.control.GradientPanel panelBackground;
+        private common.control.GradientPanel panelChildForm;
     }
 }
 

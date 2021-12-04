@@ -50,7 +50,9 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
@@ -77,12 +79,18 @@
     <Compile Include="common\control\GradientPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="common\control\SongDataGrid.xaml.cs">
+      <DependentUpon>SongDataGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="common\control\SongListView.xaml.cs">
       <DependentUpon>SongListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="common\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
     <Compile Include="common\util\Mp3SongUtil.cs" />
+    <Compile Include="model\data\MusicPlayerDataSet.cs">
+      <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="model\model\PlayingSong.cs" />
     <Compile Include="model\model\Playlist.cs" />
     <Compile Include="model\model\Song.cs" />
@@ -208,6 +216,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="common\control\SongDataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="common\control\SongListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

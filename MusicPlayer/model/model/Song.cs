@@ -1,6 +1,6 @@
 ﻿namespace MusicPlayer.model
 {
-    class Song
+    public class Song
     {
         private int Id;
         private string name;
@@ -12,5 +12,6 @@
         public string Author { get => author; set => author = value; }
         public int Duration { get => duration; set => duration = value; }
         public string FileName { get => fileName; set => fileName = value; }
+
     }
 }

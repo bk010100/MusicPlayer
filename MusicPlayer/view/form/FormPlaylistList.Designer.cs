@@ -1,5 +1,5 @@
 ﻿
-namespace MusicPlayer.view.ui
+namespace MusicPlayer.view.form
 {
     partial class FormPlaylistList
     {
@@ -31,7 +31,7 @@ namespace MusicPlayer.view.ui
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlaylistList));
             this.btnAddPlaylist = new System.Windows.Forms.Button();
-            this.panelBackground = new MusicPlayer.common.component.GradientPanel();
+            this.panelBackground = new MusicPlayer.common.control.GradientPanel();
             this.panelBackground.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +97,6 @@ namespace MusicPlayer.view.ui
         #endregion
 
         private System.Windows.Forms.Button btnAddPlaylist;
-        private common.component.GradientPanel panelBackground;
+        private common.control.GradientPanel panelBackground;
     }
 }

@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace MusicPlayer.common.component
+namespace MusicPlayer.common.control
 {
     class GradientPanel : Panel
     {

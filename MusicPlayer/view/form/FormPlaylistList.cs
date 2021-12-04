@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MusicPlayer.view.ui
+namespace MusicPlayer.view.form
 {
     public partial class FormPlaylistList : Form
     {

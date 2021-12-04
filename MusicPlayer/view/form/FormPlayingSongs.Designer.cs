@@ -1,5 +1,5 @@
 ﻿
-namespace MusicPlayer.view.ui
+namespace MusicPlayer.view.form
 {
     partial class FormPlayingSongs
     {

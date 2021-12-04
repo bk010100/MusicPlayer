@@ -1,5 +1,4 @@
-﻿using MusicPlayer.view.ui;
-using MusicPlayer.view.ui;
+﻿using MusicPlayer.view.form;
 using System;
 using System.Windows.Forms;
 
@@ -60,7 +59,7 @@ namespace MusicPlayer
 
         private void OnClickBtnSettings(object sender, EventArgs e)
         {
-            
+
         }
 
 

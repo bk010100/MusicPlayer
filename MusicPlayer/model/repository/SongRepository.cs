@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using MusicPlayer.common.util;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
-using MusicPlayer.common.util;
 
 namespace MusicPlayer.model.repository
 {
     sealed class SongRepository
-    { 
+    {
         #region Singleton
-        
+
         private static SongRepository instance = null;
         private static readonly object padlock = new object();
-        
+
         public static SongRepository Instance
         {
             get
@@ -43,7 +42,7 @@ namespace MusicPlayer.model.repository
 
         public SongRepository()
         {
-            
+
         }
 
 

@@ -1,9 +1,12 @@
 ﻿namespace MusicPlayer.model
 {
-    class Playlist
+    public class Playlist
     {
-        private int Id { get; set; }
-        private string Name { get; set; }
-        private int songsNumber { get; set; }
+        private int id;
+        private string name;
+        private int songsNumber;
+
+        public string Name { get => name; set => name = value; }
+        public int SongNumber { get => songsNumber; set => songsNumber = value; }
     }
 }

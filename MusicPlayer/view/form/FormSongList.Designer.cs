@@ -1,7 +1,6 @@
-﻿using MusicPlayer.common.component;
-using MusicPlayer.common.control;
+﻿using MusicPlayer.common.control;
 
-namespace MusicPlayer.view.ui
+namespace MusicPlayer.view.form
 {
     partial class FormSongList
     {
@@ -31,55 +30,38 @@ namespace MusicPlayer.view.ui
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.tblSongBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.musicPlayerDataSet = new MusicPlayer.model.data.MusicPlayerDataSet();
-            this.tblSongTableAdapter = new MusicPlayer.model.data.MusicPlayerDataSetTableAdapters.TblSongTableAdapter();
-            this.panelBackground = new MusicPlayer.common.component.GradientPanel();
-            this.songListViewContainer = new System.Windows.Forms.Integration.ElementHost();
-            this.songListView = new MusicPlayer.common.control.SongListView();
-            ((System.ComponentModel.ISupportInitialize)(this.tblSongBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musicPlayerDataSet)).BeginInit();
+            this.panelBackground = new MusicPlayer.common.control.GradientPanel();
+            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.datagridSongList = new MusicPlayer.common.control.SongDataGrid();
             this.panelBackground.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tblSongBindingSource
-            // 
-            this.tblSongBindingSource.DataMember = "TblSong";
-            this.tblSongBindingSource.DataSource = this.musicPlayerDataSet;
-            // 
-            // musicPlayerDataSet
-            // 
-            this.musicPlayerDataSet.DataSetName = "MusicPlayerDataSet";
-            this.musicPlayerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tblSongTableAdapter
-            // 
-            this.tblSongTableAdapter.ClearBeforeFill = true;
             // 
             // panelBackground
             // 
             this.panelBackground.BackColor = System.Drawing.Color.White;
             this.panelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelBackground.ColorBottom = System.Drawing.Color.Blue;
-            this.panelBackground.ColorTop = System.Drawing.Color.LavenderBlush;
-            this.panelBackground.Controls.Add(this.songListViewContainer);
+            this.panelBackground.ColorBottom = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.panelBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelBackground.Controls.Add(this.elementHost1);
             this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBackground.GradientAngel = 90F;
             this.panelBackground.Location = new System.Drawing.Point(0, 0);
+            this.panelBackground.Margin = new System.Windows.Forms.Padding(1);
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(1000, 600);
             this.panelBackground.TabIndex = 0;
             // 
-            // songListViewContainer
+            // elementHost1
             // 
-            this.songListViewContainer.BackColor = System.Drawing.Color.Transparent;
-            this.songListViewContainer.BackColorTransparent = true;
-            this.songListViewContainer.Location = new System.Drawing.Point(242, 107);
-            this.songListViewContainer.Name = "songListViewContainer";
-            this.songListViewContainer.Size = new System.Drawing.Size(543, 391);
-            this.songListViewContainer.TabIndex = 2;
-            this.songListViewContainer.Child = this.songListView;
+            this.elementHost1.BackColor = System.Drawing.Color.Transparent;
+            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementHost1.Location = new System.Drawing.Point(0, 0);
+            this.elementHost1.MinimumSize = new System.Drawing.Size(500, 300);
+            this.elementHost1.Name = "elementHost1";
+            this.elementHost1.Size = new System.Drawing.Size(1000, 600);
+            this.elementHost1.TabIndex = 0;
+            this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Child = this.datagridSongList;
             // 
             // FormSongList
             // 
@@ -100,8 +82,6 @@ namespace MusicPlayer.view.ui
             this.Text = "SongListForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OnLoad);
-            ((System.ComponentModel.ISupportInitialize)(this.tblSongBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.musicPlayerDataSet)).EndInit();
             this.panelBackground.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -110,10 +90,7 @@ namespace MusicPlayer.view.ui
         #endregion
 
         private GradientPanel panelBackground;
-        private model.data.MusicPlayerDataSet musicPlayerDataSet;
-        private System.Windows.Forms.BindingSource tblSongBindingSource;
-        private model.data.MusicPlayerDataSetTableAdapters.TblSongTableAdapter tblSongTableAdapter;
-        private System.Windows.Forms.Integration.ElementHost songListViewContainer;
-        private SongListView songListView;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private SongDataGrid datagridSongList;
     }
 }

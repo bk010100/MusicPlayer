@@ -37,11 +37,6 @@ namespace MusicPlayer
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageForm));
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.btnHomepage = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnPlaylists = new System.Windows.Forms.Button();
-            this.btnSongs = new System.Windows.Forms.Button();
             this.panelTitlebar = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.imgIcon = new System.Windows.Forms.PictureBox();
@@ -49,104 +44,16 @@ namespace MusicPlayer
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.panelBackground = new MusicPlayer.common.control.GradientPanel();
             this.panelChildForm = new MusicPlayer.common.control.GradientPanel();
-            this.panelMenu.SuspendLayout();
+            this.panel = new MusicPlayer.common.control.GradientPanel();
+            this.btnHomepage = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnPlaylists = new System.Windows.Forms.Button();
+            this.btnSongs = new System.Windows.Forms.Button();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).BeginInit();
             this.panelBackground.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelMenu
-            // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.panelMenu.Controls.Add(this.btnHomepage);
-            this.panelMenu.Controls.Add(this.btnSettings);
-            this.panelMenu.Controls.Add(this.btnPlaylists);
-            this.panelMenu.Controls.Add(this.btnSongs);
-            this.panelMenu.ForeColor = System.Drawing.Color.DimGray;
-            this.panelMenu.Location = new System.Drawing.Point(0, 3);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(186, 765);
-            this.panelMenu.TabIndex = 1;
-            // 
-            // btnHomepage
-            // 
-            this.btnHomepage.BackColor = System.Drawing.Color.Transparent;
-            this.btnHomepage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHomepage.BackgroundImage")));
-            this.btnHomepage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnHomepage.FlatAppearance.BorderSize = 0;
-            this.btnHomepage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnHomepage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnHomepage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHomepage.Font = new System.Drawing.Font("Tempus Sans ITC", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHomepage.ForeColor = System.Drawing.Color.Brown;
-            this.btnHomepage.Location = new System.Drawing.Point(12, 58);
-            this.btnHomepage.Name = "btnHomepage";
-            this.btnHomepage.Size = new System.Drawing.Size(155, 146);
-            this.btnHomepage.TabIndex = 3;
-            this.btnHomepage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnHomepage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnHomepage.UseVisualStyleBackColor = false;
-            this.btnHomepage.Click += new System.EventHandler(this.OnClickBtnHomepage);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.ForeColor = System.Drawing.Color.White;
-            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(12, 491);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(155, 128);
-            this.btnSettings.TabIndex = 2;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.OnClickBtnSettings);
-            // 
-            // btnPlaylists
-            // 
-            this.btnPlaylists.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPlaylists.FlatAppearance.BorderSize = 0;
-            this.btnPlaylists.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPlaylists.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnPlaylists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlaylists.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlaylists.ForeColor = System.Drawing.Color.White;
-            this.btnPlaylists.Image = ((System.Drawing.Image)(resources.GetObject("btnPlaylists.Image")));
-            this.btnPlaylists.Location = new System.Drawing.Point(12, 357);
-            this.btnPlaylists.Name = "btnPlaylists";
-            this.btnPlaylists.Size = new System.Drawing.Size(155, 128);
-            this.btnPlaylists.TabIndex = 1;
-            this.btnPlaylists.Text = "Playlists";
-            this.btnPlaylists.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnPlaylists.UseVisualStyleBackColor = false;
-            this.btnPlaylists.Click += new System.EventHandler(this.OnClickBtnPlaylists);
-            // 
-            // btnSongs
-            // 
-            this.btnSongs.BackColor = System.Drawing.Color.Transparent;
-            this.btnSongs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSongs.FlatAppearance.BorderSize = 0;
-            this.btnSongs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSongs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnSongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSongs.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSongs.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSongs.Image = ((System.Drawing.Image)(resources.GetObject("btnSongs.Image")));
-            this.btnSongs.Location = new System.Drawing.Point(12, 232);
-            this.btnSongs.Name = "btnSongs";
-            this.btnSongs.Size = new System.Drawing.Size(155, 119);
-            this.btnSongs.TabIndex = 0;
-            this.btnSongs.Text = "Songs";
-            this.btnSongs.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSongs.UseVisualStyleBackColor = false;
-            this.btnSongs.Click += new System.EventHandler(this.OnClickBtnSongs);
             // 
             // panelTitlebar
             // 
@@ -232,7 +139,6 @@ namespace MusicPlayer
             this.panelBackground.ColorTop = System.Drawing.Color.Transparent;
             this.panelBackground.Controls.Add(this.panelChildForm);
             this.panelBackground.Controls.Add(this.panelTitlebar);
-            this.panelBackground.Controls.Add(this.panelMenu);
             this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBackground.Font = new System.Drawing.Font("Malgun Gothic", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelBackground.ForeColor = System.Drawing.Color.Transparent;
@@ -256,6 +162,101 @@ namespace MusicPlayer
             this.panelChildForm.Size = new System.Drawing.Size(1018, 738);
             this.panelChildForm.TabIndex = 3;
             // 
+            // panel
+            // 
+            this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel.ColorBottom = System.Drawing.Color.Black;
+            this.panel.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.panel.Controls.Add(this.btnHomepage);
+            this.panel.Controls.Add(this.btnSettings);
+            this.panel.Controls.Add(this.btnPlaylists);
+            this.panel.Controls.Add(this.btnSongs);
+            this.panel.GradientAngel = 0F;
+            this.panel.Location = new System.Drawing.Point(0, 30);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(183, 738);
+            this.panel.TabIndex = 4;
+            // 
+            // btnHomepage
+            // 
+            this.btnHomepage.BackColor = System.Drawing.Color.Transparent;
+            this.btnHomepage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHomepage.BackgroundImage")));
+            this.btnHomepage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnHomepage.FlatAppearance.BorderSize = 0;
+            this.btnHomepage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHomepage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnHomepage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHomepage.Font = new System.Drawing.Font("Tempus Sans ITC", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHomepage.ForeColor = System.Drawing.Color.Brown;
+            this.btnHomepage.Location = new System.Drawing.Point(12, 58);
+            this.btnHomepage.Name = "btnHomepage";
+            this.btnHomepage.Size = new System.Drawing.Size(155, 146);
+            this.btnHomepage.TabIndex = 3;
+            this.btnHomepage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHomepage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnHomepage.UseVisualStyleBackColor = false;
+            this.btnHomepage.Click += new System.EventHandler(this.OnClickBtnHomepage);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.BackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSettings.FlatAppearance.BorderSize = 0;
+            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettings.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSettings.ForeColor = System.Drawing.Color.White;
+            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
+            this.btnSettings.Location = new System.Drawing.Point(12, 491);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(155, 128);
+            this.btnSettings.TabIndex = 2;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSettings.UseVisualStyleBackColor = false;
+            this.btnSettings.Click += new System.EventHandler(this.OnClickBtnSettings);
+            // 
+            // btnPlaylists
+            // 
+            this.btnPlaylists.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlaylists.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPlaylists.FlatAppearance.BorderSize = 0;
+            this.btnPlaylists.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPlaylists.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnPlaylists.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaylists.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlaylists.ForeColor = System.Drawing.Color.White;
+            this.btnPlaylists.Image = ((System.Drawing.Image)(resources.GetObject("btnPlaylists.Image")));
+            this.btnPlaylists.Location = new System.Drawing.Point(12, 357);
+            this.btnPlaylists.Name = "btnPlaylists";
+            this.btnPlaylists.Size = new System.Drawing.Size(155, 128);
+            this.btnPlaylists.TabIndex = 1;
+            this.btnPlaylists.Text = "Playlists";
+            this.btnPlaylists.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPlaylists.UseVisualStyleBackColor = false;
+            this.btnPlaylists.Click += new System.EventHandler(this.OnClickBtnPlaylists);
+            // 
+            // btnSongs
+            // 
+            this.btnSongs.BackColor = System.Drawing.Color.Transparent;
+            this.btnSongs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSongs.FlatAppearance.BorderSize = 0;
+            this.btnSongs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSongs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSongs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSongs.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSongs.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSongs.Image = ((System.Drawing.Image)(resources.GetObject("btnSongs.Image")));
+            this.btnSongs.Location = new System.Drawing.Point(12, 232);
+            this.btnSongs.Name = "btnSongs";
+            this.btnSongs.Size = new System.Drawing.Size(155, 119);
+            this.btnSongs.TabIndex = 0;
+            this.btnSongs.Text = "Songs";
+            this.btnSongs.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSongs.UseVisualStyleBackColor = false;
+            this.btnSongs.Click += new System.EventHandler(this.OnClickBtnSongs);
+            // 
             // HomepageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,35 +264,28 @@ namespace MusicPlayer
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1200, 768);
+            this.ControlBox = false;
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.panelBackground);
-            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "HomepageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.OnLoad);
-            this.panelMenu.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.OnLoadForm);
             this.panelTitlebar.ResumeLayout(false);
             this.panelTitlebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).EndInit();
             this.panelBackground.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Panel panelMenu;
-        private Button btnHomepage;
-        private Button btnSettings;
-        private Button btnPlaylists;
-        private Button btnSongs;
         private Panel panelTitlebar;
         private Label lbTitle;
         private PictureBox imgIcon;
@@ -299,6 +293,11 @@ namespace MusicPlayer
         private Button btnCloseApp;
         private common.control.GradientPanel panelBackground;
         private common.control.GradientPanel panelChildForm;
+        private Button btnHomepage;
+        private Button btnSettings;
+        private Button btnPlaylists;
+        private Button btnSongs;
+        private common.control.GradientPanel panel;
     }
 }
 

@@ -79,11 +79,8 @@
     <Compile Include="common\control\GradientPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="common\control\SongDataGrid.xaml.cs">
-      <DependentUpon>SongDataGrid.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="common\control\SongListView.xaml.cs">
-      <DependentUpon>SongListView.xaml</DependentUpon>
+    <Compile Include="common\control\DataGridSongList.xaml.cs">
+      <DependentUpon>DataGridSongList.xaml</DependentUpon>
     </Compile>
     <Compile Include="common\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
@@ -216,11 +213,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="common\control\SongDataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="common\control\SongListView.xaml">
+    <Page Include="common\control\DataGridSongList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

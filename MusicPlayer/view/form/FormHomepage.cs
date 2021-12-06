@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.view.form;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MusicPlayer
@@ -17,17 +18,51 @@ namespace MusicPlayer
             TopLevel = false
         };
 
+        // Variables for draggable title bar
+        private bool isTitleDragging = false;
+        private Point titleStartPoint = new Point(0, 0);
+
 
         [Obsolete]
-        public HomepageForm()
+        public HomepageForm() => InitializeComponent();
+
+
+        private void OnLoadForm(object sender, EventArgs e)
         {
-            InitializeComponent();
+            SetTitleBarToDraggable();
         }
 
 
-        private void OnLoad(object sender, EventArgs e)
+        private void SetTitleBarToDraggable()
         {
+            panelTitlebar.MouseDown += OnMouseDownTitleBar;
+            panelTitlebar.MouseUp += OnMouseUpTitleBar;
+            panelTitlebar.MouseMove += OnMouseMoveTitleBar;
+        }
 
+
+        private void OnMouseMoveTitleBar(object sender, MouseEventArgs e)
+        {
+            if(isTitleDragging)
+            {
+                Point p1 = new Point(e.X, e.Y);
+                Point p2 = PointToScreen(p1);
+                Point p3 = new Point(p2.X - titleStartPoint.X, p2.Y - titleStartPoint.Y);
+                Location = p3;
+            }
+        }
+
+
+        private void OnMouseUpTitleBar(object sender, MouseEventArgs e)
+        {
+            isTitleDragging = false;
+        }
+
+
+        private void OnMouseDownTitleBar(object sender, MouseEventArgs e)
+        {
+            titleStartPoint = e.Location;
+            isTitleDragging = true;
         }
 
 
@@ -68,24 +103,5 @@ namespace MusicPlayer
 
         }
 
-        private void onClickBtnHomepage(object sender, EventArgs e)
-        {
-
-        }
-
-        private void onClickBtnSettings(object sender, EventArgs e)
-        {
-
-        }
-
-        private void onClickBtnPlaylists(object sender, EventArgs e)
-        {
-
-        }
-
-        private void onClickBtnSongs(object sender, EventArgs e)
-        {
-
-        }
     }
 }

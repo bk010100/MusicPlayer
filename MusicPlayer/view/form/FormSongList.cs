@@ -3,6 +3,7 @@ using MusicPlayer.viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Binding = System.Windows.Data.Binding;
 
 namespace MusicPlayer.view.form
 {
@@ -17,12 +18,37 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void OnLoad(object sender, EventArgs e)
+        private void OnLoadForm(object sender, EventArgs e)
         {
+            viewModel.DataGrid = dgSongList;
             songList = viewModel.GetAllSongs();
-            datagridSongList.SetBindingSource(songList);
+
+            SetDataBindingForDataGrid(songList);
+            SetOnDoubleMouseClickOnDataRow();
+            SetTextForPlaylistProfile();
         }
 
+
+        private void SetTextForPlaylistProfile()
+        {
+            lbPlaylistName.Text = "All songs";
+            lbSongCount.Text = "Number of songs: " + songList.Count;
+        }
+
+
+        private void SetDataBindingForDataGrid(List<Song> songs)
+        {
+            dgSongList.dataGrid.ItemsSource = songs;
+            dgSongList.name.Binding = new Binding("Name");
+            dgSongList.artits.Binding = new Binding("Artist");
+            dgSongList.length.Binding = new Binding("Length");
+        }
+
+
+        private void SetOnDoubleMouseClickOnDataRow()
+        {
+            dgSongList.dataGrid.MouseDoubleClick += viewModel.OnDoubleMouseClickOnDataRow;
+        }
 
     }
 }

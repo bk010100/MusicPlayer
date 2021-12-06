@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="MusicPlayer.common.control.SongDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             VerticalContentAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
+             Width="Auto"
+             Height="Auto"
+             ScrollViewer.VerticalScrollBarVisibility="Disabled">
+    <DockPanel x:Name="dockPanel" MaxWidth="1200" MaxHeight="1200" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="10,0,0,0" VerticalAlignment="Top" LastChildFill="False" HorizontalAlignment="Left">
+        <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="name" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Name" CanUserSort="False" MinWidth="300" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="artits" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Artist" CanUserSort="False" MinWidth="300" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="length" Foreground="White" FontSize="22" FontFamily="Arial" Header="Length" CanUserSort="False" MinWidth="200" CanUserResize="False"/>
+            </DataGrid.Columns>
+
+            <DataGrid.Resources>
+
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Gray"/>
+                    <Setter Property="MinHeight" Value="50"/>
+                </Style>
+
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+
+            </DataGrid.Resources>
+
+        </DataGrid>
+    </DockPanel>
+</UserControl>

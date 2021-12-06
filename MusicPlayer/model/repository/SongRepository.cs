@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 
 namespace MusicPlayer.model.repository
 {
-    sealed class SongRepository
+    public sealed class SongRepository
     {
         #region Singleton
 
@@ -31,44 +32,63 @@ namespace MusicPlayer.model.repository
 
         #endregion
 
-        private List<Song> allSongs = new List<Song>();
         private readonly SqlConnection connection = new SqlConnection()
         {
             ConnectionString = SqlUtil.GetConnectionString()
         };
         private SqlCommand command;
         private SqlDataAdapter dataAdapter;
-        private DataSet dataset = new DataSet();
+        private readonly DataSet dataset = new DataSet();
 
         public SongRepository()
         {
-
+           
         }
 
 
-        // Public methods
+        private void RunOnNewThread(ThreadStart functionName)
+        {
+            Thread thread = new Thread(functionName);
+            thread.Start();
+            thread.Join();
+            if (thread.IsAlive)
+            {
+                thread.Abort();
+            }
+        }
+
+
         public List<Song> GetAllSongs()
         {
-            string sql = SqlUtil.GetAllFromTable("TblSong");
-            dataAdapter = new SqlDataAdapter(sql, connection);
-            dataAdapter.Fill(dataset);
+            connection.Open();
 
-            allSongs = ConvertDatasetToList();
+            RunOnNewThread(FillDatasetWithAllSongs);
+            List<Song> allSongs = ConvertDatasetToList();
+
             connection.Close();
-
             return allSongs;
         }
 
 
-        // Private methods
+
+        private void FillDatasetWithAllSongs()
+        {
+            string sql = SqlUtil.GetAllFromTable("TblSong");
+            dataAdapter = new SqlDataAdapter(sql, connection);
+            dataAdapter.Fill(dataset);
+        }
+
+
         private List<Song> ConvertDatasetToList()
         {
             List<Song> songs = dataset.Tables[0].AsEnumerable().Select(
                 datarow => new Song
                 {
                     Name = datarow.Field<string>("name"),
-                    Author = datarow.Field<string>("author"),
-                    FileName = datarow.Field<string>("fileName")
+                    Artist = datarow.Field<string>("artist"),
+                    FileName = datarow.Field<string>("fileName"),
+                    Duration = datarow.Field<int>("duration"),
+                    Length = datarow.Field<string>("length")
                 }).ToList();
 
             return songs;

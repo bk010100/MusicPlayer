@@ -30,59 +30,101 @@ namespace MusicPlayer.view.form
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSongList));
             this.panelBackground = new MusicPlayer.common.control.GradientPanel();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.datagridSongList = new MusicPlayer.common.control.SongDataGrid();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            this.lbSongCount = new System.Windows.Forms.Label();
+            this.lbPlaylistName = new System.Windows.Forms.Label();
+            this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
+            this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
             this.panelBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panelBackground
             // 
             this.panelBackground.BackColor = System.Drawing.Color.White;
             this.panelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelBackground.ColorBottom = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.panelBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelBackground.Controls.Add(this.elementHost1);
-            this.panelBackground.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBackground.ColorBottom = System.Drawing.Color.Black;
+            this.panelBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelBackground.Controls.Add(this.pbImage);
+            this.panelBackground.Controls.Add(this.lbSongCount);
+            this.panelBackground.Controls.Add(this.lbPlaylistName);
+            this.panelBackground.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBackground.GradientAngel = 90F;
             this.panelBackground.Location = new System.Drawing.Point(0, 0);
-            this.panelBackground.Margin = new System.Windows.Forms.Padding(1);
+            this.panelBackground.Margin = new System.Windows.Forms.Padding(0);
             this.panelBackground.Name = "panelBackground";
-            this.panelBackground.Size = new System.Drawing.Size(1000, 600);
+            this.panelBackground.Size = new System.Drawing.Size(1100, 250);
             this.panelBackground.TabIndex = 0;
             // 
-            // elementHost1
+            // pbImage
             // 
-            this.elementHost1.BackColor = System.Drawing.Color.Transparent;
-            this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.elementHost1.Location = new System.Drawing.Point(0, 0);
-            this.elementHost1.MinimumSize = new System.Drawing.Size(500, 300);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(1000, 600);
-            this.elementHost1.TabIndex = 0;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = this.datagridSongList;
+            this.pbImage.BackColor = System.Drawing.Color.Transparent;
+            this.pbImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbImage.BackgroundImage")));
+            this.pbImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbImage.Location = new System.Drawing.Point(12, 36);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(167, 168);
+            this.pbImage.TabIndex = 4;
+            this.pbImage.TabStop = false;
+            // 
+            // lbSongCount
+            // 
+            this.lbSongCount.AutoSize = true;
+            this.lbSongCount.BackColor = System.Drawing.Color.Transparent;
+            this.lbSongCount.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSongCount.ForeColor = System.Drawing.Color.White;
+            this.lbSongCount.Location = new System.Drawing.Point(190, 143);
+            this.lbSongCount.Name = "lbSongCount";
+            this.lbSongCount.Size = new System.Drawing.Size(68, 25);
+            this.lbSongCount.TabIndex = 3;
+            this.lbSongCount.Text = "label2";
+            // 
+            // lbPlaylistName
+            // 
+            this.lbPlaylistName.AutoSize = true;
+            this.lbPlaylistName.BackColor = System.Drawing.Color.Transparent;
+            this.lbPlaylistName.Font = new System.Drawing.Font("Bahnschrift", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPlaylistName.ForeColor = System.Drawing.Color.White;
+            this.lbPlaylistName.Location = new System.Drawing.Point(185, 65);
+            this.lbPlaylistName.Name = "lbPlaylistName";
+            this.lbPlaylistName.Size = new System.Drawing.Size(147, 58);
+            this.lbPlaylistName.TabIndex = 2;
+            this.lbPlaylistName.Text = "label1";
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.BackColor = System.Drawing.Color.Transparent;
+            this.dataGrid.Location = new System.Drawing.Point(0, 250);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGrid.MinimumSize = new System.Drawing.Size(500, 300);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(1100, 491);
+            this.dataGrid.TabIndex = 0;
+            this.dataGrid.TabStop = false;
+            this.dataGrid.Text = "elementHost1";
+            this.dataGrid.Child = this.dgSongList;
             // 
             // FormSongList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ClientSize = new System.Drawing.Size(1100, 800);
             this.ControlBox = false;
             this.Controls.Add(this.panelBackground);
-            this.DoubleBuffered = true;
+            this.Controls.Add(this.dataGrid);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSongList";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "SongListForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.OnLoad);
+            this.Load += new System.EventHandler(this.OnLoadForm);
             this.panelBackground.ResumeLayout(false);
+            this.panelBackground.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -90,7 +132,10 @@ namespace MusicPlayer.view.form
         #endregion
 
         private GradientPanel panelBackground;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private SongDataGrid datagridSongList;
+        private System.Windows.Forms.Integration.ElementHost dataGrid;
+        private SongDataGrid dgSongList;
+        private System.Windows.Forms.Label lbSongCount;
+        private System.Windows.Forms.Label lbPlaylistName;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }

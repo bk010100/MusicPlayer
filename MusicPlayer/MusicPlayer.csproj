@@ -82,13 +82,15 @@
     <Compile Include="common\control\DataGridSongList.xaml.cs">
       <DependentUpon>DataGridSongList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="common\control\DraggableTitlebarPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="common\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
-    <Compile Include="common\util\Mp3SongUtil.cs" />
+    <Compile Include="common\util\Mp3Player.cs" />
     <Compile Include="model\data\MusicPlayerDataSet.cs">
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="model\model\PlayingSong.cs" />
     <Compile Include="model\model\Playlist.cs" />
     <Compile Include="model\model\Song.cs" />
     <Compile Include="model\repository\PlaylistRepository.cs" />
@@ -98,6 +100,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="viewmodel\PlayingSongListViewModel.cs" />
     <Compile Include="viewmodel\PlaylistListViewModel.cs" />
     <Compile Include="viewmodel\SongListViewModel.cs" />
     <Compile Include="view\form\FormHomepage.cs">
@@ -108,11 +111,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\form\FormPlayingSongs.cs">
+    <Compile Include="view\form\FormPlayingSongList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\form\FormPlayingSongs.Designer.cs">
-      <DependentUpon>FormPlayingSongs.cs</DependentUpon>
+    <Compile Include="view\form\FormPlayingSongList.Designer.cs">
+      <DependentUpon>FormPlayingSongList.cs</DependentUpon>
     </Compile>
     <Compile Include="view\form\FormPlaylistList.cs">
       <SubType>Form</SubType>
@@ -126,7 +129,6 @@
     <Compile Include="view\form\FormSongList.Designer.cs">
       <DependentUpon>FormSongList.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\util\PictureBoxUtil.cs" />
     <EmbeddedResource Include="common\control\ButtonPlaylist.resx">
       <DependentUpon>ButtonPlaylist.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,13 +143,20 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="view\form\FormPlayingSongList.resx">
+      <DependentUpon>FormPlayingSongList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\form\FormPlaylistList.resx">
       <DependentUpon>FormPlaylistList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\form\FormSongList.resx">
       <DependentUpon>FormSongList.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="model\data\MusicPlayerDataSet.xsc">
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </None>
@@ -180,6 +189,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MusicPlayerDb.mdf</DependentUpon>
     </Content>
+    <None Include="png\volume_64.png" />
+    <None Include="png\mute_64.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -218,5 +229,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

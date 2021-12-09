@@ -10,9 +10,9 @@
         <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False">
 
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Name" CanUserSort="False" MinWidth="300" CanUserResize="False"/>
-                <DataGridTextColumn x:Name="artits" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Artist" CanUserSort="False" MinWidth="300" CanUserResize="False"/>
-                <DataGridTextColumn x:Name="length" Foreground="White" FontSize="22" FontFamily="Arial" Header="Length" CanUserSort="False" MinWidth="200" CanUserResize="False"/>
+                <DataGridTextColumn x:Name="name" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Name" CanUserSort="False" MinWidth="300" CanUserResize="False" MaxWidth="300"/>
+                <DataGridTextColumn x:Name="artits" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Artist" CanUserSort="False" MinWidth="300" CanUserResize="False" MaxWidth="300"/>
+                <DataGridTextColumn x:Name="length" Foreground="White" FontSize="22" FontFamily="Arial" Header="Length" CanUserSort="False" MinWidth="200" CanUserResize="False" MaxWidth="200"/>
             </DataGrid.Columns>
 
             <DataGrid.Resources>
@@ -25,6 +25,7 @@
 
                 <Style TargetType="DataGridCell">
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis"/>
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="Transparent"/>

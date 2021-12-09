@@ -1,9 +1,10 @@
 ﻿using MusicPlayer.common.util;
+using MusicPlayer.model.model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace MusicPlayer.model.repository
 {
@@ -36,8 +37,8 @@ namespace MusicPlayer.model.repository
         {
             ConnectionString = SqlUtil.GetConnectionString()
         };
-        private SqlCommand command;
-        private SqlDataAdapter dataAdapter;
+        private SqlCommand command = new SqlCommand();
+        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         private readonly DataSet dataset = new DataSet();
 
         public SongRepository()
@@ -46,42 +47,41 @@ namespace MusicPlayer.model.repository
         }
 
 
-        private void RunOnNewThread(ThreadStart functionName)
+        private async Task RunTask(Task task)
         {
-            Thread thread = new Thread(functionName);
-            thread.Start();
-            thread.Join();
-            if (thread.IsAlive)
-            {
-                thread.Abort();
-            }
+            task.Start();
+            await task;
+            task.Dispose();
         }
 
 
-        public List<Song> GetAllSongs()
+        public async Task<List<Song>> GetAllSongs()
         {
             connection.Open();
 
-            RunOnNewThread(FillDatasetWithAllSongs);
-            List<Song> allSongs = ConvertDatasetToList();
-
+            await RunTask(GetTaskRetrieveAllSongsFromDb());
+            List<Song> allSongs = ConvertDatasetToSongList();
+            
             connection.Close();
             return allSongs;
         }
 
 
 
-        private void FillDatasetWithAllSongs()
+        private Task GetTaskRetrieveAllSongsFromDb()
         {
-            string sql = SqlUtil.GetAllFromTable("TblSong");
-            dataAdapter = new SqlDataAdapter(sql, connection);
-            dataAdapter.Fill(dataset);
+            return new Task(() =>
+            {
+                string sql = SqlUtil.GetAllFromTable("TblSong");
+                dataAdapter = new SqlDataAdapter(sql, connection);
+                dataAdapter.Fill(dataset);
+            }); 
         }
 
 
-        private List<Song> ConvertDatasetToList()
+        private List<Song> ConvertDatasetToSongList()
         {
-            List<Song> songs = dataset.Tables[0].AsEnumerable().Select(
+            return dataset.Tables[0].AsEnumerable().Select(
                 datarow => new Song
                 {
                     Name = datarow.Field<string>("name"),
@@ -90,8 +90,6 @@ namespace MusicPlayer.model.repository
                     Duration = datarow.Field<int>("duration"),
                     Length = datarow.Field<string>("length")
                 }).ToList();
-
-            return songs;
         }
     }
 }

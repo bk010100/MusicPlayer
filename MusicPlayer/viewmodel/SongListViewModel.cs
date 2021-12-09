@@ -1,12 +1,12 @@
-﻿using MusicPlayer.common.control;
-using MusicPlayer.model;
+﻿using MusicPlayer.model.model;
 using MusicPlayer.model.repository;
-using System;
+using MusicPlayer.view.form;
 using System.Collections.Generic;
-using System.Data;
-using System.Windows;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using DataGrid = System.Windows.Controls.DataGrid;
 
 namespace MusicPlayer.viewmodel
 {
@@ -14,20 +14,34 @@ namespace MusicPlayer.viewmodel
     {
         private readonly SongRepository repository = new SongRepository();
         private List<Song> songList = new List<Song>();
-        private SongDataGrid dataGrid;
-        private int selectedSongIndex;
+        private int selectedSongIndex, selectedPlaylistId = 0;
 
-        public SongDataGrid DataGrid { set => dataGrid = value; }
+        public int SelectedPlaylistId { set => selectedPlaylistId = value; }
 
-
-        public List<Song> GetAllSongs()
+        public async Task<List<Song>> GetSongList()
         {
-            songList = repository.GetAllSongs();
+            if (selectedPlaylistId == 0)
+                songList = await repository.GetAllSongs();
+            else
+            {
+                
+            }
+
             return songList;
         }
 
 
         public void OnDoubleMouseClickOnDataRow(object sender, MouseButtonEventArgs e)
+        {
+            if (Application.OpenForms["FormPlayingSongs"] == null)
+            {
+                GetSelectedSongIndex(sender);
+                OpenPlayingSongsForm();
+            }
+        }
+
+
+        private void GetSelectedSongIndex(object sender)
         {
             if (sender != null)
             {
@@ -37,6 +51,21 @@ namespace MusicPlayer.viewmodel
                     selectedSongIndex = row.GetIndex();
                 }
             }
+        }
+
+
+        private void OpenPlayingSongsForm()
+        {
+            FormPlayingSongList playingSongsForm = new FormPlayingSongList()
+            {
+                ViewModel = new PlayingSongListViewModel
+                {
+                    PlayingSongIndex = selectedSongIndex,
+                    SongList = songList
+                }
+            };
+
+            playingSongsForm.Show();
         }
 
     }

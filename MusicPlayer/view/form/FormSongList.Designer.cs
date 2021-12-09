@@ -43,7 +43,7 @@ namespace MusicPlayer.view.form
             // 
             // panelBackground
             // 
-            this.panelBackground.BackColor = System.Drawing.Color.White;
+            this.panelBackground.BackColor = System.Drawing.Color.Black;
             this.panelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panelBackground.ColorBottom = System.Drawing.Color.Black;
             this.panelBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));

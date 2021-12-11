@@ -1,4 +1,4 @@
-﻿using MusicPlayer.model;
+﻿using MusicPlayer.model.model;
 using MusicPlayer.viewmodel;
 using System;
 using System.Collections.Generic;
@@ -18,10 +18,9 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void OnLoadForm(object sender, EventArgs e)
+        private async void OnLoadForm(object sender, EventArgs e)
         {
-            viewModel.DataGrid = dgSongList;
-            songList = viewModel.GetAllSongs();
+            songList = await viewModel.GetSongList();
 
             SetDataBindingForDataGrid(songList);
             SetOnDoubleMouseClickOnDataRow();

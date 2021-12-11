@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# IDE0011: Add braces
+csharp_prefer_braces = false
+
+# IDE0032: Use auto property
+dotnet_style_prefer_auto_properties = false
+
+# IDE0055: Fix formatting
+dotnet_diagnostic.IDE0055.severity = none

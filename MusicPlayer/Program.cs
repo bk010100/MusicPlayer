@@ -14,7 +14,7 @@ namespace MusicPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomepageForm());
+            Application.Run(new FormHomepage());
         }
     }
 }

@@ -85,6 +85,9 @@
     <Compile Include="common\control\DraggableTitlebarPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="common\control\TrackBar.xaml.cs">
+      <DependentUpon>TrackBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="common\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
     <Compile Include="common\util\Mp3Player.cs" />
@@ -189,6 +192,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MusicPlayerDb.mdf</DependentUpon>
     </Content>
+    <None Include="png\delete_64.png" />
+    <None Include="png\replay_one_64.png" />
+    <None Include="png\replay_all_64.png" />
     <None Include="png\volume_64.png" />
     <None Include="png\mute_64.png" />
   </ItemGroup>
@@ -225,6 +231,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="common\control\DataGridSongList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="common\control\TrackBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

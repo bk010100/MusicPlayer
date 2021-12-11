@@ -1,5 +1,4 @@
-﻿using AxWMPLib;
-using WMPLib;
+﻿using WMPLib;
 
 namespace MusicPlayer.common.util
 {
@@ -7,11 +6,12 @@ namespace MusicPlayer.common.util
     {
         private static readonly string songFileLocation = @"C:\Users\Speedyservice\Music\MusicPlayer\";
         private readonly WindowsMediaPlayer player = new WindowsMediaPlayer();
-        //private static IWMPMedia media;
+        //private IWMPMedia media;
 
 
         public string SongUrl { get => player.URL; set => player.URL = GetSongLocation(value); }
         public bool MuteVolume { get => player.settings.mute; set => player.settings.mute = value; }
+        //public int SongTimer { get => player.}
 
 
         public static string GetSongLocation(string mp3File)
@@ -32,6 +32,12 @@ namespace MusicPlayer.common.util
         }
 
 
+        public void StopSong()
+        {
+            player.controls.stop();
+        }
+
+
         public void ClosePlayer()
         {
             player.close();
@@ -43,8 +49,9 @@ namespace MusicPlayer.common.util
             player.settings.volume = volume;
         }
 
+        
 
-        //public static int GetSongDurationInSecond(string mp3File)
+        //public int GetSongDurationInSecond(string mp3File)
         //{
         //    media = player.newMedia(GetSongLocation(mp3File));
         //    int duration = (int)media.duration;

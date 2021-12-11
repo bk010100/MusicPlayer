@@ -32,32 +32,40 @@ namespace MusicPlayer.view.form
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlayingSongList));
             this.pnPlayerBar = new System.Windows.Forms.Panel();
+            this.btnRepeat = new System.Windows.Forms.Button();
+            this.lbSongLength = new System.Windows.Forms.Label();
+            this.lbSongTimer = new System.Windows.Forms.Label();
             this.tbVolume = new System.Windows.Forms.TrackBar();
             this.btnVolume = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.ttNotify = new System.Windows.Forms.ToolTip(this.components);
-            this.cmsSongOption = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
-            this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
-            this.gradientPanel2 = new MusicPlayer.common.control.GradientPanel();
+            this.pnTitlebar = new MusicPlayer.common.control.DraggableTitlebarPanel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
-            this.btnMinimizeWindow = new System.Windows.Forms.Button();
             this.btnCloseWindow = new System.Windows.Forms.Button();
-            this.pnTitlebar = new MusicPlayer.common.control.DraggableTitlebarPanel();
+            this.btnMinimizeWindow = new System.Windows.Forms.Button();
+            this.tbSongDurationBar = new System.Windows.Forms.Integration.ElementHost();
+            this.sliderSongDuration = new MusicPlayer.common.control.TrackBar();
+            this.gradientPanel2 = new MusicPlayer.common.control.GradientPanel();
+            this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
+            this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
             this.pnPlayerBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
-            this.gradientPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.pnTitlebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
+            this.gradientPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnPlayerBar
             // 
             this.pnPlayerBar.BackColor = System.Drawing.Color.Black;
+            this.pnPlayerBar.Controls.Add(this.btnRepeat);
+            this.pnPlayerBar.Controls.Add(this.tbSongDurationBar);
+            this.pnPlayerBar.Controls.Add(this.lbSongLength);
+            this.pnPlayerBar.Controls.Add(this.lbSongTimer);
             this.pnPlayerBar.Controls.Add(this.tbVolume);
             this.pnPlayerBar.Controls.Add(this.btnVolume);
             this.pnPlayerBar.Controls.Add(this.btnPrevious);
@@ -69,6 +77,44 @@ namespace MusicPlayer.view.form
             this.pnPlayerBar.Name = "pnPlayerBar";
             this.pnPlayerBar.Size = new System.Drawing.Size(500, 108);
             this.pnPlayerBar.TabIndex = 4;
+            // 
+            // btnRepeat
+            // 
+            this.btnRepeat.BackgroundImage = global::MusicPlayer.Properties.Resources.replay_all_64;
+            this.btnRepeat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRepeat.FlatAppearance.BorderSize = 0;
+            this.btnRepeat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRepeat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRepeat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRepeat.ForeColor = System.Drawing.Color.Black;
+            this.btnRepeat.Location = new System.Drawing.Point(26, 61);
+            this.btnRepeat.Name = "btnRepeat";
+            this.btnRepeat.Size = new System.Drawing.Size(32, 28);
+            this.btnRepeat.TabIndex = 9;
+            this.btnRepeat.UseVisualStyleBackColor = true;
+            this.btnRepeat.Click += new System.EventHandler(this.OnClickBtnRepeat);
+            // 
+            // lbSongLength
+            // 
+            this.lbSongLength.AutoSize = true;
+            this.lbSongLength.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSongLength.ForeColor = System.Drawing.Color.White;
+            this.lbSongLength.Location = new System.Drawing.Point(458, 22);
+            this.lbSongLength.Name = "lbSongLength";
+            this.lbSongLength.Size = new System.Drawing.Size(39, 17);
+            this.lbSongLength.TabIndex = 7;
+            this.lbSongLength.Text = "00:00";
+            // 
+            // lbSongTimer
+            // 
+            this.lbSongTimer.AutoSize = true;
+            this.lbSongTimer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSongTimer.ForeColor = System.Drawing.Color.White;
+            this.lbSongTimer.Location = new System.Drawing.Point(3, 22);
+            this.lbSongTimer.Name = "lbSongTimer";
+            this.lbSongTimer.Size = new System.Drawing.Size(39, 17);
+            this.lbSongTimer.TabIndex = 6;
+            this.lbSongTimer.Text = "00:00";
             // 
             // tbVolume
             // 
@@ -139,7 +185,7 @@ namespace MusicPlayer.view.form
             // btnPlay
             // 
             this.btnPlay.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay.BackgroundImage = global::MusicPlayer.Properties.Resources.play_64;
+            this.btnPlay.BackgroundImage = global::MusicPlayer.Properties.Resources.pause_64;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlay.FlatAppearance.BorderSize = 0;
             this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
@@ -154,11 +200,6 @@ namespace MusicPlayer.view.form
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.OnClickBtnPlay);
             // 
-            // cmsSongOption
-            // 
-            this.cmsSongOption.Name = "cmsSongOption";
-            this.cmsSongOption.Size = new System.Drawing.Size(61, 4);
-            // 
             // elementHost1
             // 
             this.elementHost1.Location = new System.Drawing.Point(0, 0);
@@ -167,27 +208,20 @@ namespace MusicPlayer.view.form
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Child = null;
             // 
-            // dataGrid
+            // pnTitlebar
             // 
-            this.dataGrid.BackColor = System.Drawing.Color.Transparent;
-            this.dataGrid.Location = new System.Drawing.Point(-1, 0);
-            this.dataGrid.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(500, 633);
-            this.dataGrid.TabIndex = 0;
-            this.dataGrid.Child = this.dgSongList;
-            // 
-            // gradientPanel2
-            // 
-            this.gradientPanel2.ColorBottom = System.Drawing.Color.Black;
-            this.gradientPanel2.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gradientPanel2.Controls.Add(this.dataGrid);
-            this.gradientPanel2.GradientAngel = 90F;
-            this.gradientPanel2.Location = new System.Drawing.Point(0, 27);
-            this.gradientPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.gradientPanel2.Name = "gradientPanel2";
-            this.gradientPanel2.Size = new System.Drawing.Size(500, 633);
-            this.gradientPanel2.TabIndex = 3;
+            this.pnTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.pnTitlebar.Controls.Add(this.lbTitle);
+            this.pnTitlebar.Controls.Add(this.pbIcon);
+            this.pnTitlebar.Controls.Add(this.btnCloseWindow);
+            this.pnTitlebar.Controls.Add(this.btnMinimizeWindow);
+            this.pnTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTitlebar.Location = new System.Drawing.Point(0, 0);
+            this.pnTitlebar.Margin = new System.Windows.Forms.Padding(0);
+            this.pnTitlebar.Name = "pnTitlebar";
+            this.pnTitlebar.Padding = new System.Windows.Forms.Padding(2);
+            this.pnTitlebar.Size = new System.Drawing.Size(500, 27);
+            this.pnTitlebar.TabIndex = 5;
             // 
             // lbTitle
             // 
@@ -214,22 +248,6 @@ namespace MusicPlayer.view.form
             this.pbIcon.TabIndex = 1;
             this.pbIcon.TabStop = false;
             // 
-            // btnMinimizeWindow
-            // 
-            this.btnMinimizeWindow.BackColor = System.Drawing.Color.Transparent;
-            this.btnMinimizeWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMinimizeWindow.BackgroundImage")));
-            this.btnMinimizeWindow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMinimizeWindow.FlatAppearance.BorderSize = 0;
-            this.btnMinimizeWindow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnMinimizeWindow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnMinimizeWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimizeWindow.Location = new System.Drawing.Point(445, 9);
-            this.btnMinimizeWindow.Name = "btnMinimizeWindow";
-            this.btnMinimizeWindow.Size = new System.Drawing.Size(20, 13);
-            this.btnMinimizeWindow.TabIndex = 2;
-            this.btnMinimizeWindow.UseVisualStyleBackColor = false;
-            this.btnMinimizeWindow.Click += new System.EventHandler(this.OnClickBtnMinimizeWindow);
-            // 
             // btnCloseWindow
             // 
             this.btnCloseWindow.BackColor = System.Drawing.Color.Transparent;
@@ -247,20 +265,54 @@ namespace MusicPlayer.view.form
             this.btnCloseWindow.UseVisualStyleBackColor = false;
             this.btnCloseWindow.Click += new System.EventHandler(this.OnClickButtonCloseWindow);
             // 
-            // pnTitlebar
+            // btnMinimizeWindow
             // 
-            this.pnTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.pnTitlebar.Controls.Add(this.lbTitle);
-            this.pnTitlebar.Controls.Add(this.pbIcon);
-            this.pnTitlebar.Controls.Add(this.btnCloseWindow);
-            this.pnTitlebar.Controls.Add(this.btnMinimizeWindow);
-            this.pnTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnTitlebar.Location = new System.Drawing.Point(0, 0);
-            this.pnTitlebar.Margin = new System.Windows.Forms.Padding(0);
-            this.pnTitlebar.Name = "pnTitlebar";
-            this.pnTitlebar.Padding = new System.Windows.Forms.Padding(2);
-            this.pnTitlebar.Size = new System.Drawing.Size(500, 27);
-            this.pnTitlebar.TabIndex = 5;
+            this.btnMinimizeWindow.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimizeWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMinimizeWindow.BackgroundImage")));
+            this.btnMinimizeWindow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMinimizeWindow.FlatAppearance.BorderSize = 0;
+            this.btnMinimizeWindow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnMinimizeWindow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnMinimizeWindow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimizeWindow.Location = new System.Drawing.Point(445, 9);
+            this.btnMinimizeWindow.Name = "btnMinimizeWindow";
+            this.btnMinimizeWindow.Size = new System.Drawing.Size(20, 13);
+            this.btnMinimizeWindow.TabIndex = 2;
+            this.btnMinimizeWindow.UseVisualStyleBackColor = false;
+            this.btnMinimizeWindow.Click += new System.EventHandler(this.OnClickBtnMinimizeWindow);
+            // 
+            // tbSongDurationBar
+            // 
+            this.tbSongDurationBar.BackColor = System.Drawing.Color.Black;
+            this.tbSongDurationBar.Enabled = false;
+            this.tbSongDurationBar.Location = new System.Drawing.Point(12, 4);
+            this.tbSongDurationBar.Name = "tbSongDurationBar";
+            this.tbSongDurationBar.Size = new System.Drawing.Size(476, 18);
+            this.tbSongDurationBar.TabIndex = 8;
+            this.tbSongDurationBar.TabStop = false;
+            this.tbSongDurationBar.Child = this.sliderSongDuration;
+            // 
+            // gradientPanel2
+            // 
+            this.gradientPanel2.ColorBottom = System.Drawing.Color.Black;
+            this.gradientPanel2.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gradientPanel2.Controls.Add(this.dataGrid);
+            this.gradientPanel2.GradientAngel = 90F;
+            this.gradientPanel2.Location = new System.Drawing.Point(0, 27);
+            this.gradientPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.gradientPanel2.Name = "gradientPanel2";
+            this.gradientPanel2.Size = new System.Drawing.Size(500, 633);
+            this.gradientPanel2.TabIndex = 3;
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.BackColor = System.Drawing.Color.Transparent;
+            this.dataGrid.Location = new System.Drawing.Point(-1, 0);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(500, 633);
+            this.dataGrid.TabIndex = 0;
+            this.dataGrid.Child = this.dgSongList;
             // 
             // FormPlayingSongList
             // 
@@ -279,12 +331,14 @@ namespace MusicPlayer.view.form
             this.Name = "FormPlayingSongList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Load += new System.EventHandler(this.OnLoadForm);
+            this.Shown += new System.EventHandler(this.PlaySongOnShownForm);
             this.pnPlayerBar.ResumeLayout(false);
+            this.pnPlayerBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
-            this.gradientPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.pnTitlebar.ResumeLayout(false);
             this.pnTitlebar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
+            this.gradientPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -302,10 +356,14 @@ namespace MusicPlayer.view.form
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TrackBar tbVolume;
         private System.Windows.Forms.ToolTip ttNotify;
-        private System.Windows.Forms.ContextMenuStrip cmsSongOption;
         private System.Windows.Forms.Integration.ElementHost dataGrid;
         private common.control.SongDataGrid dgSongList;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private common.control.DraggableTitlebarPanel pnTitlebar;
+        private System.Windows.Forms.Label lbSongLength;
+        private System.Windows.Forms.Label lbSongTimer;
+        private System.Windows.Forms.Integration.ElementHost tbSongDurationBar;
+        private common.control.TrackBar sliderSongDuration;
+        private System.Windows.Forms.Button btnRepeat;
     }
 }

@@ -7,7 +7,7 @@
              Height="Auto"
              ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <DockPanel x:Name="dockPanel" MaxWidth="1200" MaxHeight="1200" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="10,0,0,0" VerticalAlignment="Top" LastChildFill="False" HorizontalAlignment="Left">
-        <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False">
+        <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False">
 
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="name" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Name" CanUserSort="False" MinWidth="300" CanUserResize="False" MaxWidth="300"/>
@@ -35,6 +35,11 @@
                 </Style>
 
             </DataGrid.Resources>
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="menu">
+                    <MenuItem Name="delete" Header="Delete"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
 
         </DataGrid>
     </DockPanel>

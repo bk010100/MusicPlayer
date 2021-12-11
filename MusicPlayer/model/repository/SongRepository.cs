@@ -55,6 +55,20 @@ namespace MusicPlayer.model.repository
         }
 
 
+        private List<Song> ConvertDatasetToSongList()
+        {
+            return dataset.Tables[0].AsEnumerable().Select(
+                datarow => new Song
+                {
+                    Name = datarow.Field<string>("name"),
+                    Artist = datarow.Field<string>("artist"),
+                    FileName = datarow.Field<string>("fileName"),
+                    Duration = datarow.Field<int>("duration"),
+                    Length = datarow.Field<string>("length")
+                }).ToList();
+        }
+
+
         public async Task<List<Song>> GetAllSongs()
         {
             connection.Open();
@@ -78,18 +92,5 @@ namespace MusicPlayer.model.repository
             }); 
         }
 
-
-        private List<Song> ConvertDatasetToSongList()
-        {
-            return dataset.Tables[0].AsEnumerable().Select(
-                datarow => new Song
-                {
-                    Name = datarow.Field<string>("name"),
-                    Artist = datarow.Field<string>("artist"),
-                    FileName = datarow.Field<string>("fileName"),
-                    Duration = datarow.Field<int>("duration"),
-                    Length = datarow.Field<string>("length")
-                }).ToList();
-        }
     }
 }

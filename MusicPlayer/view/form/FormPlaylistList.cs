@@ -25,6 +25,7 @@ namespace MusicPlayer.view.form
         {
             await ShowAllPlaylists();
             OnMenuItemClick();
+            btnAddPlaylist.Click += OpenAddPlaylistDialog;
         }
 
 
@@ -63,9 +64,39 @@ namespace MusicPlayer.view.form
             };
             btnPlaylist.SetPlaylistName();
             btnPlaylist.ContextMenuStrip = cmsMenu;
+            btnPlaylist.Click += OpenPlaylistOnClick;
 
             btnPlaylistList.Add(btnPlaylist);
             flPanel.Controls.Add(btnPlaylist);            
+        }
+
+
+        private void OpenPlaylistOnClick(object sender, EventArgs e)
+        {
+            if (sender != null && sender is ButtonPlaylist button)
+            {
+                int index = btnPlaylistList.IndexOf(button);
+                OpenPlaylist(index);
+            }
+        }
+
+
+        private void OpenPlaylist(int index)
+        {
+            Playlist selectedPlaylist = viewModel.PlaylistList[index];
+
+            // Setup form song list
+            FormHomepage formHomepage = Application.OpenForms["FormHomePage"] as FormHomepage;
+            FormSongList formSongList = new FormSongList()
+            {
+                TopLevel = false,
+                Parent = formHomepage.PnBackgroud
+            };
+            formSongList.ViewModel.SelectedPlaylist = selectedPlaylist;
+
+            // Switch to form song list
+            formSongList.Show();
+            Dispose();
         }
 
 
@@ -73,8 +104,7 @@ namespace MusicPlayer.view.form
 
         private void OnMenuItemClick()
         {
-            btnAddPlaylist.Click += OpenAddPlaylistDialog;
-            itemOpen.Click += OpenPlaylist;
+            itemOpen.Click += OpenPlaylistOnClickOpenMenu;
             itemRename.Click += OpenRenamePlaylistDialog;
             itemDelete.Click += OpenDeletePlaylistDialog;
         }
@@ -98,25 +128,12 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void OpenPlaylist(object sender, EventArgs e)
+        private void OpenPlaylistOnClickOpenMenu(object sender, EventArgs e)
         {
             if (sender != null && sender is ToolStripItem item)
             {
                 int index = GetSeletedButtonIndex(item);
-                Playlist selectedPlaylist = viewModel.PlaylistList[index];
-
-                // Setup form song list
-                FormHomepage formHomepage = Application.OpenForms["FormHomePage"] as FormHomepage;
-                FormSongList formSongList = new FormSongList()
-                {
-                    TopLevel = false,
-                    Parent = formHomepage.PnBackgroud
-                };
-                formSongList.ViewModel.SelectedPlaylist = selectedPlaylist;
-
-                // Switch to form song list
-                formSongList.Show();
-                Dispose();
+                OpenPlaylist(index);
             }
         }
 

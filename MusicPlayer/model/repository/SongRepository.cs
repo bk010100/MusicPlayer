@@ -2,6 +2,7 @@
 using MusicPlayer.model.util;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,6 +35,8 @@ namespace MusicPlayer.model.repository
 
         private readonly DataProvider provider = new DataProvider();
         private readonly SqlHelper helper;
+        private readonly string idParam = "@Id", nameParam = "@Name", artistParam = "@Artist", durationParam = "@Duration", fileNameParam = "@FileName", lengthParam = "@Length";
+        private readonly string songIdParam = "@SongId" ,playlistIdParam = "@PlaylistId";
 
         public SongRepository()
         {
@@ -56,6 +59,15 @@ namespace MusicPlayer.model.repository
         }
 
 
+        private List<int> ConvertDatasetToIntList()
+        {
+            return provider.DataSet.Tables[0]
+                .AsEnumerable()
+                .Select(datarow => datarow.Field<int>("songId"))
+                .ToList();
+        }
+
+
         public async Task<List<Song>> GetAllSongs()
         {
             provider.Connection.Open();
@@ -68,6 +80,94 @@ namespace MusicPlayer.model.repository
             return allSongs;
         }
 
+
+        public async Task<List<int>> GetSongIdsFromPlaylist(int playlistId)
+        {
+            provider.Connection.Open();
+
+            Task getSongsTask = GetTaskRetriveSongIdFromPlaylist(playlistId);
+            await SqlHelper.RunSqlTask(getSongsTask);
+            List<int> songIds = ConvertDatasetToIntList();
+
+            provider.Connection.Close();
+            return songIds;
+        }
+
+
+        public bool AddNewSong(Song song)
+        {
+            return helper.RunStoredProcedureAndGetResult("AddSong", () =>
+            {
+                provider.Command.Parameters.AddWithValue(nameParam, song.Name);
+                provider.Command.Parameters.AddWithValue(artistParam, song.Artist);
+                provider.Command.Parameters.AddWithValue(durationParam, song.Duration);
+                provider.Command.Parameters.AddWithValue(fileNameParam, song.FileName);
+                provider.Command.Parameters.AddWithValue(lengthParam, song.Length);
+            });
+        }
+
+
+        public int GetSongId(string name, string artist)
+        {
+            return helper.RunStoredProcedureAndReturnInt("GetSongId", () =>
+            {
+                provider.Command.Parameters.AddWithValue(nameParam, name);
+                provider.Command.Parameters.AddWithValue(artistParam, artist);
+            });
+        }
+
+
+        public Task GetTaskRetriveSongIdFromPlaylist(int playlistId)
+        {
+            return new Task(() =>
+            {
+                provider.DataSet.Clear();
+                provider.Command = new SqlCommand("GetSongIdFromPlaylist", provider.Connection);
+                provider.Command.CommandType = CommandType.StoredProcedure;
+                provider.Command.Parameters.AddWithValue(playlistIdParam, playlistId);
+                provider.DataAdapter = new SqlDataAdapter(provider.Command);
+                provider.DataAdapter.Fill(provider.DataSet);
+            });
+        }
+
+
+        public bool UpdateSong(int id, string name, string artist)
+        {
+            return helper.RunStoredProcedureAndGetResult("UpdateSong", () =>
+            {
+                provider.Command.Parameters.AddWithValue(idParam, id);
+                provider.Command.Parameters.AddWithValue(nameParam, name);
+                provider.Command.Parameters.AddWithValue(artistParam, artist);
+            });
+        }
+
+
+        public bool DeleteSong(int id)
+        {
+            return helper.RunStoredProcedureAndGetResult("DeleteSong", () =>
+            {
+                provider.Command.Parameters.AddWithValue(idParam, id);            
+            });
+        }
+
+
+        public bool DeleteSongIdFromPlaylist(int songId)
+        {
+            return helper.RunStoredProcedureAndGetResult("DeleteSongIdFromPlaylist", () =>
+            {
+                provider.Command.Parameters.AddWithValue(songIdParam, songId);
+            });
+        }
+
+
+        public bool AddSongToPlaylist(int songId, int playlistId)
+        {
+            return helper.RunStoredProcedureAndGetResult("AddSongToPlaylist", () =>
+            {
+                provider.Command.Parameters.AddWithValue(songIdParam, songId);
+                provider.Command.Parameters.AddWithValue(playlistIdParam, playlistId);
+            });
+        }
 
     }
 }

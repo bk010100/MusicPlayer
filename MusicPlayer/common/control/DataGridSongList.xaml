@@ -39,6 +39,7 @@
                 <ContextMenu Name="menu">
                     <MenuItem Name="play" Header="Play song"/>
                     <MenuItem Name="queue" Header="Add to queue"/>
+                    <MenuItem Name="edit" Header="Edit song"/>
                     <MenuItem Name="playlist" Header="Add to playlist"/>
                     <MenuItem Name="delete" Header="Delete song"/>
                 </ContextMenu>

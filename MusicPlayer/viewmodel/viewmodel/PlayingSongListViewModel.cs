@@ -51,7 +51,7 @@ namespace MusicPlayer.viewmodel
 
         public void PlayNextSongAfterFinishedCurrentSong(Action viewChange)
         {
-            // Try catch to in case song list is empty
+            // Try catch in case song list is empty
             int playingSongDuration = 0;
             try
             {

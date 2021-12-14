@@ -38,8 +38,8 @@ namespace MusicPlayer.common.dialog
             // 
             this.btnCancel.BackColor = System.Drawing.Color.White;
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
@@ -55,8 +55,8 @@ namespace MusicPlayer.common.dialog
             // 
             this.btnOk.BackColor = System.Drawing.Color.Black;
             this.btnOk.FlatAppearance.BorderSize = 0;
-            this.btnOk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btnOk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btnOk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btnOk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;

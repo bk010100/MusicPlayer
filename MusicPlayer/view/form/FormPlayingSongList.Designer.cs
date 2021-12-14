@@ -332,6 +332,7 @@ namespace MusicPlayer.view.form
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Load += new System.EventHandler(this.OnLoadForm);
             this.Shown += new System.EventHandler(this.PlaySongOnShownForm);
+            this.Disposed += new System.EventHandler(this.ClosePlayerOnDepose);
             this.pnPlayerBar.ResumeLayout(false);
             this.pnPlayerBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();

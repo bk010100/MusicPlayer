@@ -22,6 +22,7 @@ namespace MusicPlayer.common.control
         public ButtonPlaylist()
         {
             InitializeComponent();
+            btn.Click += OnClick;
         }
 
 
@@ -32,9 +33,9 @@ namespace MusicPlayer.common.control
 
 
 
-        public void OnBtnPlaylistClick(object sender, EventArgs e)
+        public void OnClick(object sender, EventArgs e)
         {
-
+            InvokeOnClick(this, e);
         }
 
 

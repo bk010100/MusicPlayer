@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnAddSong.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAKFJREFUSEvN1D0KwkAAROE9nlqI9y8U/Cn0EmYWHoN2QZ7iV76QWVJkx186xCPu
+        sQ+y7xZPXIPs44wi+9gvso/9IvvYL7KP/SL72C+yj/0i+9gv8nq7OAXva+bmNjhmjHPwTPd2g/zsoPl5
+        x+CZZm5ugmPW4/0i+9gvso/9IvvYL7KP/SL72C+yj/0i+9gvsu/1Ppw/I9k3b5ALPvrjv2+MBRRWn59v
+        zdFTAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="pbImage.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAMgAAADECAYAAADamm7lAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -991,7 +1000,4 @@
         zl0v9w8DDMaBjLovQaMAZBSAjAKOUfdW0P8CdEvELAPcCVcAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="dialogOpenFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
 </root>

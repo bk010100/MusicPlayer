@@ -4,7 +4,7 @@ namespace MusicPlayer.viewmodel.util
 {
     public class Mp3Player
     {
-        private static readonly string songFileLocation = @"C:\Users\Speedyservice\Music\MusicPlayer\";
+        private static readonly string SongFileLocation = @"C:\Users\Speedyservice\Music\MusicPlayer\";
         private readonly WindowsMediaPlayer player = new WindowsMediaPlayer();
         //private IWMPMedia media;
 
@@ -16,7 +16,7 @@ namespace MusicPlayer.viewmodel.util
 
         public static string GetSongLocation(string mp3File)
         {
-            return songFileLocation + mp3File;
+            return SongFileLocation + mp3File;
         }
 
 

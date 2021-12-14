@@ -32,12 +32,12 @@ namespace MusicPlayer.view.form
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSongList));
             this.panelBackground = new MusicPlayer.common.control.GradientPanel();
+            this.btnAddSong = new System.Windows.Forms.Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.lbSongCount = new System.Windows.Forms.Label();
             this.lbPlaylistName = new System.Windows.Forms.Label();
             this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
             this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
-            this.dialogOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +48,7 @@ namespace MusicPlayer.view.form
             this.panelBackground.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.panelBackground.ColorBottom = System.Drawing.Color.Black;
             this.panelBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panelBackground.Controls.Add(this.btnAddSong);
             this.panelBackground.Controls.Add(this.pbImage);
             this.panelBackground.Controls.Add(this.lbSongCount);
             this.panelBackground.Controls.Add(this.lbPlaylistName);
@@ -58,6 +59,29 @@ namespace MusicPlayer.view.form
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(1100, 250);
             this.panelBackground.TabIndex = 0;
+            // 
+            // btnAddSong
+            // 
+            this.btnAddSong.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddSong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddSong.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddSong.FlatAppearance.BorderSize = 0;
+            this.btnAddSong.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnAddSong.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnAddSong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddSong.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSong.ForeColor = System.Drawing.Color.White;
+            this.btnAddSong.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSong.Image")));
+            this.btnAddSong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddSong.Location = new System.Drawing.Point(842, 184);
+            this.btnAddSong.Name = "btnAddSong";
+            this.btnAddSong.Size = new System.Drawing.Size(129, 41);
+            this.btnAddSong.TabIndex = 5;
+            this.btnAddSong.Text = " Add song";
+            this.btnAddSong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddSong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddSong.UseVisualStyleBackColor = false;
+            this.btnAddSong.Click += new System.EventHandler(this.OnClickBtnAddSong);
             // 
             // pbImage
             // 
@@ -76,7 +100,7 @@ namespace MusicPlayer.view.form
             this.lbSongCount.BackColor = System.Drawing.Color.Transparent;
             this.lbSongCount.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSongCount.ForeColor = System.Drawing.Color.White;
-            this.lbSongCount.Location = new System.Drawing.Point(190, 143);
+            this.lbSongCount.Location = new System.Drawing.Point(190, 154);
             this.lbSongCount.Name = "lbSongCount";
             this.lbSongCount.Size = new System.Drawing.Size(68, 25);
             this.lbSongCount.TabIndex = 3;
@@ -88,7 +112,7 @@ namespace MusicPlayer.view.form
             this.lbPlaylistName.BackColor = System.Drawing.Color.Transparent;
             this.lbPlaylistName.Font = new System.Drawing.Font("Bahnschrift", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlaylistName.ForeColor = System.Drawing.Color.White;
-            this.lbPlaylistName.Location = new System.Drawing.Point(185, 65);
+            this.lbPlaylistName.Location = new System.Drawing.Point(185, 67);
             this.lbPlaylistName.Name = "lbPlaylistName";
             this.lbPlaylistName.Size = new System.Drawing.Size(147, 58);
             this.lbPlaylistName.TabIndex = 2;
@@ -101,18 +125,11 @@ namespace MusicPlayer.view.form
             this.dataGrid.Margin = new System.Windows.Forms.Padding(0);
             this.dataGrid.MinimumSize = new System.Drawing.Size(500, 300);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(856, 491);
+            this.dataGrid.Size = new System.Drawing.Size(1100, 491);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.TabStop = false;
             this.dataGrid.Text = "elementHost1";
             this.dataGrid.Child = this.dgSongList;
-            // 
-            // dialogOpenFile
-            // 
-            this.dialogOpenFile.FileName = "openFileDialog1";
-            this.dialogOpenFile.Filter = "MP3 files|*.mp3";
-            this.dialogOpenFile.InitialDirectory = "C:\\\\Users\\\\Speedyservice\\\\Music\\\\MusicPlayer\\\\";
-            this.dialogOpenFile.RestoreDirectory = true;
             // 
             // FormSongList
             // 
@@ -145,6 +162,6 @@ namespace MusicPlayer.view.form
         private System.Windows.Forms.Label lbSongCount;
         private System.Windows.Forms.Label lbPlaylistName;
         private System.Windows.Forms.PictureBox pbImage;
-        private System.Windows.Forms.OpenFileDialog dialogOpenFile;
+        private System.Windows.Forms.Button btnAddSong;
     }
 }

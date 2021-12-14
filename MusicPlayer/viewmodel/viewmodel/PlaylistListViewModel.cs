@@ -43,7 +43,7 @@ namespace MusicPlayer.viewmodel
             }
             else
             {
-                MessageBox.Show("Please recheck your connection to the database.", "Add playlist failed!");
+                MessageBox.Show("Please recheck your database connection.", "Add playlist failed!");
             }
         }
 
@@ -53,11 +53,11 @@ namespace MusicPlayer.viewmodel
             playlistList[index].Name = name;
             if (repository.UpdatePlaylistNameById(playlistList[index].Id, name))
             {
-                MessageBox.Show("Rename playlist successfully.", "Update successfully!");
+                MessageBox.Show("Rename playlist successfully.", "Success!");
             }
             else
             {
-                MessageBox.Show("Please recheck your connection to the database.", "Update failed!");
+                MessageBox.Show("Please recheck your database connection.", "Update failed!");
             }
         }
 
@@ -67,12 +67,12 @@ namespace MusicPlayer.viewmodel
             int id = playlistList[index].Id;
             if (repository.DeletePlaylistById(id) && repository.DeleteSongsFromDeletedPlaylist(id))
             {
-                MessageBox.Show("Delete playlist successfully.", "Delete successfully!");
+                MessageBox.Show("Delete playlist successfully.", "Success!");
                 playlistList.RemoveAt(index);
             }
             else
             {
-                MessageBox.Show("Please recheck your connection to the database.", "Delete failed!");
+                MessageBox.Show("Please recheck your database connection.", "Delete failed!");
             }
         }
 

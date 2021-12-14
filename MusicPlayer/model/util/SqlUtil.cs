@@ -15,10 +15,5 @@ namespace MusicPlayer.model.util
             return "SELECT * FROM " + tblName;
         }
 
-
-        public static string GetNameAuthorDurationFromTblSong()
-        {
-            return "SELECT name, author, duration from TblSong";
-        }
     }
 }

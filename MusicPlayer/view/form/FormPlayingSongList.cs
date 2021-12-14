@@ -31,9 +31,27 @@ namespace MusicPlayer.view.form
 
             dgSongList.dataGrid.MouseDoubleClick += ChangeSongOnDoubleClick;
             dgSongList.play.Click += OnClickMenuItemPlaySong;
-            dgSongList.queue.Visibility = System.Windows.Visibility.Collapsed;
-            dgSongList.playlist.Visibility = System.Windows.Visibility.Collapsed;
             dgSongList.delete.Click += OnClickMenuItemDeleteSong;
+
+            dgSongList.queue.Visibility = System.Windows.Visibility.Collapsed;
+            dgSongList.edit.Visibility = System.Windows.Visibility.Collapsed;
+            dgSongList.playlist.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+
+        private void PlaySongOnShownForm(object sender, System.EventArgs e)
+        {
+            viewModel.SetPlayerSongUrl();
+            if (!viewModel.CheckIfSongFileIsNotExist()) DeleteSongIfSongFileIsNotExist();
+
+            PlaySongAndChangeTitle();
+            viewModel.Timer.Tick += SetOnTimerTick;
+        }
+
+
+        private void ClosePlayerOnDepose(object sender, System.EventArgs e)
+        {
+            viewModel.ClosePlayer();
         }
 
 
@@ -47,16 +65,6 @@ namespace MusicPlayer.view.form
                 PlaySongAndChangeTitle();
                 ResetDisplay();
             }
-        }
-
-
-        private void PlaySongOnShownForm(object sender, System.EventArgs e)
-        {
-            viewModel.SetPlayerSongUrl();
-            if (!viewModel.CheckIfSongFileIsNotExist()) DeleteSongIfSongFileIsNotExist();
-
-            PlaySongAndChangeTitle();
-            viewModel.Timer.Tick += SetOnTimerTick;
         }
 
 
@@ -81,7 +89,7 @@ namespace MusicPlayer.view.form
 
         private void SetOnTimerTick(object sender, System.EventArgs e)
         {
-            // Try catch to in case song list is empty
+            // Try catch in case song list is empty
             Song playingSong = new Song();
             try
             {

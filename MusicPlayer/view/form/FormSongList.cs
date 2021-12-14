@@ -10,7 +10,10 @@ namespace MusicPlayer.view.form
     public partial class FormSongList : Form
     {
         private readonly SongListViewModel viewModel = new SongListViewModel();
-        private List<Song> songList;
+
+
+        public SongListViewModel ViewModel => viewModel;
+
 
         public FormSongList()
         {
@@ -20,9 +23,9 @@ namespace MusicPlayer.view.form
 
         private async void OnLoadForm(object sender, EventArgs e)
         {
-            songList = await viewModel.GetSongList();
+            await viewModel.GetSongList();
 
-            SetDataBindingForDataGrid(songList);
+            SetDataBindingForDataGrid(viewModel.SongList);
             SetOnDoubleMouseClickOnDataRow();
             SetTextForPlaylistProfile();
         }
@@ -30,14 +33,15 @@ namespace MusicPlayer.view.form
 
         private void SetTextForPlaylistProfile()
         {
-            lbPlaylistName.Text = "All songs";
-            lbSongCount.Text = "Number of songs: " + songList.Count;
+            if (viewModel.SelectedPlaylist == null) lbPlaylistName.Text = "All songs";
+            else lbPlaylistName.Text = viewModel.SelectedPlaylist.Name;
+            lbSongCount.Text = "Number of songs: " + viewModel.SongList.Count;
         }
 
 
-        private void SetDataBindingForDataGrid(List<Song> songs)
+        private void SetDataBindingForDataGrid(List<Song> songList)
         {
-            dgSongList.dataGrid.ItemsSource = songs;
+            dgSongList.dataGrid.ItemsSource = songList;
             dgSongList.name.Binding = new Binding("Name");
             dgSongList.artits.Binding = new Binding("Artist");
             dgSongList.length.Binding = new Binding("Length");

@@ -48,10 +48,10 @@ namespace MusicPlayer.common.control
             this.btn.ForeColor = System.Drawing.Color.White;
             this.btn.Image = ((System.Drawing.Image)(resources.GetObject("btn.Image")));
             this.btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn.Location = new System.Drawing.Point(0, 20);
+            this.btn.Location = new System.Drawing.Point(0, 0);
             this.btn.Margin = new System.Windows.Forms.Padding(0);
             this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(184, 200);
+            this.btn.Size = new System.Drawing.Size(180, 190);
             this.btn.TabIndex = 0;
             this.btn.Text = "Playlist name dsadaadsds";
             this.btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -65,9 +65,9 @@ namespace MusicPlayer.common.control
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btn);
-            this.Name = "ButtonPlaylist";
-            this.Padding = new System.Windows.Forms.Padding(0, 20, 0, 0);
-            this.Size = new System.Drawing.Size(184, 220);
+            this.Margin = new System.Windows.Forms.Padding(30, 0, 30, 30);
+            this.PlaylistName = "ButtonPlaylist";
+            this.Size = new System.Drawing.Size(180, 190);
             this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
 

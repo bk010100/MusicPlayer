@@ -6,6 +6,19 @@ namespace MusicPlayer.common.control
 {
     public partial class ButtonPlaylist : UserControl
     {
+        private string playlistName;
+
+
+        public string PlaylistName { 
+            get => playlistName; 
+            set
+            {
+                playlistName = value;
+                SetPlaylistName();
+            }
+        }
+
+
         public ButtonPlaylist()
         {
             InitializeComponent();
@@ -18,15 +31,16 @@ namespace MusicPlayer.common.control
         }
 
 
+
         public void OnBtnPlaylistClick(object sender, EventArgs e)
         {
 
         }
 
 
-        public void SetPlaylistName(string name)
+        public void SetPlaylistName()
         {
-            btn.Text = TextUtil.GetTextWithLimitedLength(text: name, maxLength: 10);
+            btn.Text = TextUtil.GetTextWithLimitedLength(playlistName, 15);
         }
 
     }

@@ -37,6 +37,7 @@ namespace MusicPlayer.view.form
             this.lbPlaylistName = new System.Windows.Forms.Label();
             this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
             this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
+            this.dialogOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.panelBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -100,11 +101,18 @@ namespace MusicPlayer.view.form
             this.dataGrid.Margin = new System.Windows.Forms.Padding(0);
             this.dataGrid.MinimumSize = new System.Drawing.Size(500, 300);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(1100, 491);
+            this.dataGrid.Size = new System.Drawing.Size(856, 491);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.TabStop = false;
             this.dataGrid.Text = "elementHost1";
             this.dataGrid.Child = this.dgSongList;
+            // 
+            // dialogOpenFile
+            // 
+            this.dialogOpenFile.FileName = "openFileDialog1";
+            this.dialogOpenFile.Filter = "MP3 files|*.mp3";
+            this.dialogOpenFile.InitialDirectory = "C:\\\\Users\\\\Speedyservice\\\\Music\\\\MusicPlayer\\\\";
+            this.dialogOpenFile.RestoreDirectory = true;
             // 
             // FormSongList
             // 
@@ -137,5 +145,6 @@ namespace MusicPlayer.view.form
         private System.Windows.Forms.Label lbSongCount;
         private System.Windows.Forms.Label lbPlaylistName;
         private System.Windows.Forms.PictureBox pbImage;
+        private System.Windows.Forms.OpenFileDialog dialogOpenFile;
     }
 }

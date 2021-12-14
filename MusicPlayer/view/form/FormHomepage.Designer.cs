@@ -42,13 +42,17 @@ namespace MusicPlayer
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnPlaylists = new System.Windows.Forms.Button();
             this.btnSongs = new System.Windows.Forms.Button();
-            this.panelChildForm = new MusicPlayer.common.control.GradientPanel();
+            this.pnBackground = new MusicPlayer.common.control.GradientPanel();
+            this.btnLogoAbout = new System.Windows.Forms.Button();
+            this.lbAppName = new System.Windows.Forms.Label();
+            this.lbVersion = new System.Windows.Forms.Label();
             this.btnCloseApp = new System.Windows.Forms.Button();
             this.btnMinimizeApp = new System.Windows.Forms.Button();
             this.imgIcon = new System.Windows.Forms.PictureBox();
             this.lbTitle = new System.Windows.Forms.Label();
             this.pnTitlebar = new MusicPlayer.common.control.DraggableTitlebarPanel();
             this.panel.SuspendLayout();
+            this.pnBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).BeginInit();
             this.pnTitlebar.SuspendLayout();
             this.SuspendLayout();
@@ -149,17 +153,64 @@ namespace MusicPlayer
             this.btnSongs.UseVisualStyleBackColor = false;
             this.btnSongs.Click += new System.EventHandler(this.OnClickBtnSongs);
             // 
-            // panelChildForm
+            // pnBackground
             // 
-            this.panelChildForm.BackColor = System.Drawing.Color.Black;
-            this.panelChildForm.ColorBottom = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panelChildForm.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.panelChildForm.GradientAngel = 90F;
-            this.panelChildForm.Location = new System.Drawing.Point(183, 27);
-            this.panelChildForm.Margin = new System.Windows.Forms.Padding(0);
-            this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1017, 741);
-            this.panelChildForm.TabIndex = 3;
+            this.pnBackground.BackColor = System.Drawing.Color.Black;
+            this.pnBackground.ColorBottom = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.pnBackground.ColorTop = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.pnBackground.Controls.Add(this.btnLogoAbout);
+            this.pnBackground.Controls.Add(this.lbAppName);
+            this.pnBackground.Controls.Add(this.lbVersion);
+            this.pnBackground.GradientAngel = 90F;
+            this.pnBackground.Location = new System.Drawing.Point(183, 27);
+            this.pnBackground.Margin = new System.Windows.Forms.Padding(0);
+            this.pnBackground.Name = "pnBackground";
+            this.pnBackground.Size = new System.Drawing.Size(1017, 741);
+            this.pnBackground.TabIndex = 3;
+            // 
+            // btnLogoAbout
+            // 
+            this.btnLogoAbout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogoAbout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLogoAbout.BackgroundImage")));
+            this.btnLogoAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnLogoAbout.Enabled = false;
+            this.btnLogoAbout.FlatAppearance.BorderSize = 0;
+            this.btnLogoAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogoAbout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnLogoAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogoAbout.Font = new System.Drawing.Font("Tempus Sans ITC", 39.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogoAbout.ForeColor = System.Drawing.Color.White;
+            this.btnLogoAbout.Location = new System.Drawing.Point(425, 206);
+            this.btnLogoAbout.Name = "btnLogoAbout";
+            this.btnLogoAbout.Size = new System.Drawing.Size(127, 147);
+            this.btnLogoAbout.TabIndex = 3;
+            this.btnLogoAbout.UseVisualStyleBackColor = false;
+            // 
+            // lbAppName
+            // 
+            this.lbAppName.AutoSize = true;
+            this.lbAppName.BackColor = System.Drawing.Color.Transparent;
+            this.lbAppName.Enabled = false;
+            this.lbAppName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbAppName.Font = new System.Drawing.Font("Bahnschrift", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAppName.Location = new System.Drawing.Point(394, 356);
+            this.lbAppName.Name = "lbAppName";
+            this.lbAppName.Size = new System.Drawing.Size(181, 35);
+            this.lbAppName.TabIndex = 3;
+            this.lbAppName.Text = "Music Player";
+            // 
+            // lbVersion
+            // 
+            this.lbVersion.AutoSize = true;
+            this.lbVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lbVersion.Enabled = false;
+            this.lbVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbVersion.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.Location = new System.Drawing.Point(420, 409);
+            this.lbVersion.Name = "lbVersion";
+            this.lbVersion.Size = new System.Drawing.Size(131, 25);
+            this.lbVersion.TabIndex = 3;
+            this.lbVersion.Text = "Version: 1.0.0";
             // 
             // btnCloseApp
             // 
@@ -223,7 +274,7 @@ namespace MusicPlayer
             this.lbTitle.Text = "Music Player 1.0.0";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnDraggableTitlebar
+            // pnTitlebar
             // 
             this.pnTitlebar.BackColor = System.Drawing.Color.Black;
             this.pnTitlebar.Controls.Add(this.btnMinimizeApp);
@@ -233,7 +284,7 @@ namespace MusicPlayer
             this.pnTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTitlebar.Location = new System.Drawing.Point(0, 0);
             this.pnTitlebar.Margin = new System.Windows.Forms.Padding(0);
-            this.pnTitlebar.Name = "pnDraggableTitlebar";
+            this.pnTitlebar.Name = "pnTitlebar";
             this.pnTitlebar.Padding = new System.Windows.Forms.Padding(2);
             this.pnTitlebar.Size = new System.Drawing.Size(1200, 27);
             this.pnTitlebar.TabIndex = 3;
@@ -247,7 +298,7 @@ namespace MusicPlayer
             this.ClientSize = new System.Drawing.Size(1200, 768);
             this.ControlBox = false;
             this.Controls.Add(this.pnTitlebar);
-            this.Controls.Add(this.panelChildForm);
+            this.Controls.Add(this.pnBackground);
             this.Controls.Add(this.panel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -259,6 +310,8 @@ namespace MusicPlayer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.OnLoadForm);
             this.panel.ResumeLayout(false);
+            this.pnBackground.ResumeLayout(false);
+            this.pnBackground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).EndInit();
             this.pnTitlebar.ResumeLayout(false);
             this.pnTitlebar.PerformLayout();
@@ -272,12 +325,15 @@ namespace MusicPlayer
         private Button btnPlaylists;
         private Button btnSongs;
         private common.control.GradientPanel panel;
-        private common.control.GradientPanel panelChildForm;
         private Button btnCloseApp;
         private Button btnMinimizeApp;
         private PictureBox imgIcon;
         private Label lbTitle;
         private common.control.DraggableTitlebarPanel pnTitlebar;
+        private Label lbVersion;
+        private Label lbAppName;
+        private Button btnLogoAbout;
+        private common.control.GradientPanel pnBackground;
     }
 }
 

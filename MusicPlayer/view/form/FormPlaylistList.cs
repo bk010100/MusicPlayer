@@ -1,8 +1,10 @@
 ﻿using MusicPlayer.common.control;
+using MusicPlayer.common.dialog;
+using MusicPlayer.model;
 using MusicPlayer.viewmodel;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MusicPlayer.view.form
@@ -10,6 +12,8 @@ namespace MusicPlayer.view.form
     public partial class FormPlaylistList : Form
     {
         private readonly PlaylistListViewModel viewModel = new PlaylistListViewModel();
+        private readonly List<ButtonPlaylist> btnPlaylistList = new List<ButtonPlaylist>();
+
 
         public FormPlaylistList()
         {
@@ -17,52 +21,151 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void OnLoad(object sender, EventArgs e)
+        private async void OnLoadForm(object sender, EventArgs e)
         {
-            List<string> list = viewModel.GetAllPlaylistNames();
-            LoadAllPlaylists(list);
+            await ShowAllPlaylists();
+            OnMenuItemClick();
         }
 
 
-        private void LoadAllPlaylists(List<string> list)
+        private int GetSeletedButtonIndex(ToolStripItem item)
         {
-            int xSpace = 260, ySpace = 260;
-            int x = btnAddPlaylist.Location.X;
-            int y = btnAddPlaylist.Location.Y;
+            ContextMenuStrip menu = item.Owner as ContextMenuStrip;
+            ButtonPlaylist button = menu.SourceControl as ButtonPlaylist;
+            return btnPlaylistList.IndexOf(button); 
+        }
 
-            for (int count = 0; count < list.Count; count++)
+
+        private void ChangeButtonPlaylistName(ButtonPlaylist buttonPlaylist, string name)
+        {
+            buttonPlaylist.PlaylistName = name;
+        }
+
+
+        private async Task ShowAllPlaylists()
+        {
+            List<Playlist> playlistList = await viewModel.GetAllPlaylistFromDb();
+            
+
+            for (int index = 0; index < playlistList.Count; index++)
             {
-                // First button is "Add new playlist" button
-                if (count == 0)
-                    x += xSpace;
+                AddNewBtnPlaylist(playlistList[index]);
+            }
 
-                AddNewBtnPlaylist(
-                    playlistName: list[count],
-                    xPosition: x,
-                    yPosition: y);
+        }
 
-                // When reach the end line
-                if (count == 2 || ((count - 2) / 4 == 0 && count > 4))
+
+        private void AddNewBtnPlaylist(Playlist playlist)
+        {
+            ButtonPlaylist btnPlaylist = new ButtonPlaylist
+            {
+                PlaylistName = playlist.Name
+            };
+            btnPlaylist.SetPlaylistName();
+            btnPlaylist.ContextMenuStrip = cmsMenu;
+
+            btnPlaylistList.Add(btnPlaylist);
+            flPanel.Controls.Add(btnPlaylist);            
+        }
+
+
+        #region Menu item events
+
+        private void OnMenuItemClick()
+        {
+            btnAddPlaylist.Click += OpenAddPlaylistDialog;
+            itemOpen.Click += OpenPlaylist;
+            itemRename.Click += OpenRenamePlaylistDialog;
+            itemDelete.Click += OpenDeletePlaylistDialog;
+        }
+
+
+        private void OpenAddPlaylistDialog(object sender, EventArgs e)
+        {
+            DialogAddPlaylist addPlaylistDialog = new DialogAddPlaylist();
+            addPlaylistDialog.ShowDialog();
+
+            // Check if user click OK 
+            if (addPlaylistDialog.PlaylistName.Length > 0)
+            {
+                Playlist playlist = new Playlist
                 {
-                    x = btnAddPlaylist.Location.X;
-                    y += ySpace;
-                }
-                else
+                    Name = addPlaylistDialog.PlaylistName
+                };
+                AddNewBtnPlaylist(playlist);
+                viewModel.AddNewPlaylistToDb(playlist.Name);
+            }
+        }
+
+
+        private void OpenPlaylist(object sender, EventArgs e)
+        {
+            if (sender != null && sender is ToolStripItem item)
+            {
+                int index = GetSeletedButtonIndex(item);
+                Playlist selectedPlaylist = viewModel.PlaylistList[index];
+
+                // Setup form song list
+                FormHomepage formHomepage = Application.OpenForms["FormHomePage"] as FormHomepage;
+                FormSongList formSongList = new FormSongList()
                 {
-                    x += xSpace;
+                    TopLevel = false,
+                    Parent = formHomepage.PnBackgroud
+                };
+                formSongList.ViewModel.SelectedPlaylist = selectedPlaylist;
+
+                // Switch to form song list
+                formSongList.Show();
+                Dispose();
+            }
+        }
+
+
+        private void OpenRenamePlaylistDialog(object sender, EventArgs e)
+        {
+            if (sender != null && sender is ToolStripItem item)
+            {
+                int index = GetSeletedButtonIndex(item);
+                DialogRenamePlaylist renameDialog = new DialogRenamePlaylist
+                {
+                    OriginalName = viewModel.PlaylistList[index].Name
+                };
+                renameDialog.ShowDialog();
+
+                // Check if user click OK
+                if (renameDialog.NewName.Length > 0)
+                {
+                    ButtonPlaylist selectedButton = flPanel.Controls[index + 1] as ButtonPlaylist;
+                    ChangeButtonPlaylistName(selectedButton, renameDialog.NewName);
+                    viewModel.UpdatePlaylistNameToDb(index, renameDialog.NewName);
                 }
             }
         }
 
 
-        private void AddNewBtnPlaylist(string playlistName, int xPosition, int yPosition)
+        private void OpenDeletePlaylistDialog(object sender, EventArgs e)
         {
-            ButtonPlaylist btnPlaylist = new ButtonPlaylist
+            if (sender != null && sender is ToolStripItem item)
             {
-                Location = new Point(xPosition, yPosition)
-            };
-            btnPlaylist.SetPlaylistName(playlistName);
-            panelBackground.Controls.Add(btnPlaylist);
+                int index = GetSeletedButtonIndex(item);
+                DialogDeletePlaylist deletePlaylistDialog = new DialogDeletePlaylist
+                {
+                    PlaylistName = viewModel.PlaylistList[index].Name
+                };
+                deletePlaylistDialog.ShowDialog();
+
+                // Check if user click OK
+                if (deletePlaylistDialog.DeleteConfirmed)
+                {
+                    flPanel.Controls[index + 1].Dispose();
+                    btnPlaylistList.RemoveAt(index);
+                    viewModel.DeletePlaylistFromDb(index);
+                }
+            }
         }
+
+
+        #endregion
+
     }
 }

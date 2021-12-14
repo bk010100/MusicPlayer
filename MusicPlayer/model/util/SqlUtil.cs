@@ -1,12 +1,12 @@
 ﻿using System.Configuration;
 
-namespace MusicPlayer.common.util
+namespace MusicPlayer.model.util
 {
     public static class SqlUtil
     {
         public static string GetConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["MusicPlayerDataSource"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["MusicDb"].ConnectionString;
         }
 
 

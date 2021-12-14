@@ -88,9 +88,29 @@
     <Compile Include="common\control\TrackBar.xaml.cs">
       <DependentUpon>TrackBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="common\util\SqlUtil.cs" />
+    <Compile Include="common\dialog\DialogDeletePlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="common\dialog\DialogDeletePlaylist.Designer.cs">
+      <DependentUpon>DialogDeletePlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\dialog\DialogRenamePlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="common\dialog\DialogRenamePlaylist.Designer.cs">
+      <DependentUpon>DialogRenamePlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="common\dialog\DialogAddPlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="common\dialog\DialogAddPlaylist.Designer.cs">
+      <DependentUpon>DialogAddPlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="model\util\DataProvider.cs" />
+    <Compile Include="model\util\SqlHelper.cs" />
+    <Compile Include="model\util\SqlUtil.cs" />
     <Compile Include="common\util\TextUtil.cs" />
-    <Compile Include="common\util\Mp3Player.cs" />
+    <Compile Include="viewmodel\util\Mp3Player.cs" />
     <Compile Include="model\data\MusicPlayerDataSet.cs">
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </Compile>
@@ -103,9 +123,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="viewmodel\PlayingSongListViewModel.cs" />
-    <Compile Include="viewmodel\PlaylistListViewModel.cs" />
-    <Compile Include="viewmodel\SongListViewModel.cs" />
+    <Compile Include="viewmodel\viewmodel\PlayingSongListViewModel.cs" />
+    <Compile Include="viewmodel\viewmodel\PlaylistListViewModel.cs" />
+    <Compile Include="viewmodel\viewmodel\SongListViewModel.cs" />
     <Compile Include="view\form\FormHomepage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +154,15 @@
     </Compile>
     <EmbeddedResource Include="common\control\ButtonPlaylist.resx">
       <DependentUpon>ButtonPlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\dialog\DialogAddPlaylist.resx">
+      <DependentUpon>DialogAddPlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\dialog\DialogDeletePlaylist.resx">
+      <DependentUpon>DialogDeletePlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="common\dialog\DialogRenamePlaylist.resx">
+      <DependentUpon>DialogRenamePlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\form\FormHomepage.resx">
       <DependentUpon>FormHomepage.cs</DependentUpon>
@@ -192,7 +221,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MusicPlayerDb.mdf</DependentUpon>
     </Content>
-    <None Include="png\delete_64.png" />
     <None Include="png\replay_one_64.png" />
     <None Include="png\replay_all_64.png" />
     <None Include="png\volume_64.png" />

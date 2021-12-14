@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using MusicPlayer.viewmodel;
-using MusicPlayer.common.util;
-using Binding = System.Windows.Data.Binding;
+﻿using MusicPlayer.common.util;
 using MusicPlayer.model.model;
+using MusicPlayer.viewmodel;
+using System.Windows.Forms;
 using System.Windows.Input;
+using Binding = System.Windows.Data.Binding;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace MusicPlayer.view.form
@@ -11,7 +11,7 @@ namespace MusicPlayer.view.form
     public partial class FormPlayingSongList : Form
     {
         private PlayingSongListViewModel viewModel;
-        
+
         public PlayingSongListViewModel ViewModel { set => viewModel = value; }
 
 
@@ -19,10 +19,10 @@ namespace MusicPlayer.view.form
         {
             InitializeComponent();
         }
-               
+
 
         private void OnLoadForm(object sender, System.EventArgs e)
-        { 
+        {
             pnTitlebar.SetDraggable();
             SetTitleToPlayingSongName();
 
@@ -30,13 +30,29 @@ namespace MusicPlayer.view.form
             ResizeTextAndColumnInDataGrid();
 
             dgSongList.dataGrid.MouseDoubleClick += ChangeSongOnDoubleClick;
+            dgSongList.play.Click += OnClickMenuItemPlaySong;
+            dgSongList.queue.Visibility = System.Windows.Visibility.Collapsed;
+            dgSongList.playlist.Visibility = System.Windows.Visibility.Collapsed;
             dgSongList.delete.Click += OnClickMenuItemDeleteSong;
+        }
+
+
+        private void OnClickMenuItemPlaySong(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (dgSongList.dataGrid.SelectedItem != null)
+            {
+                Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
+                viewModel.PlayingSongIndex = viewModel.SongList.IndexOf(selectedSong);
+
+                PlaySongAndChangeTitle();
+                ResetDisplay();
+            }
         }
 
 
         private void PlaySongOnShownForm(object sender, System.EventArgs e)
         {
-            viewModel.SetPlayerSongUrl();                
+            viewModel.SetPlayerSongUrl();
             if (!viewModel.CheckIfSongFileIsNotExist()) DeleteSongIfSongFileIsNotExist();
 
             PlaySongAndChangeTitle();
@@ -124,17 +140,17 @@ namespace MusicPlayer.view.form
             MessageBox.Show("File is not exist: " + viewModel.GetPlayerSongUrl(), "File path invalid!");
             Song song = viewModel.SongList[viewModel.PlayingSongIndex];
             viewModel.DeleteSong(song);
-            dgSongList.dataGrid.Items.Refresh();            
+            dgSongList.dataGrid.Items.Refresh();
         }
 
 
         private void ChangeSongOnDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-            viewModel.PlayingSongIndex = viewModel.GetDataGridSelectedRow(sender).GetIndex();
+                viewModel.PlayingSongIndex = viewModel.GetDataGridSelectedRow(sender).GetIndex();
             PlaySongAndChangeTitle();
             ResetDisplay();
-        }           
+        }
 
 
         private void SetDataBindingForDataGrid()
@@ -168,7 +184,7 @@ namespace MusicPlayer.view.form
                 viewModel.DeleteSong(selectedSong);
                 MessageBox.Show(selectedSong.Name + " - " + selectedSong.Artist + " has been removed from this list.", "Delete song successfully!");
                 dgSongList.dataGrid.Items.Refresh();
-            }            
+            }
         }
 
 
@@ -191,7 +207,7 @@ namespace MusicPlayer.view.form
 
 
         private void OnClickBtnVolume(object sender, System.EventArgs e)
-        {            
+        {
             if (tbVolume.Value != 0)
             {
                 if (viewModel.IsVolumeMuted())
@@ -204,7 +220,7 @@ namespace MusicPlayer.view.form
                     btnVolume.BackgroundImage = Properties.Resources.mute_64;
                     viewModel.MuteVolume = true;
                 }
-            }                
+            }
         }
 
 
@@ -213,7 +229,7 @@ namespace MusicPlayer.view.form
             int volume = tbVolume.Value * 5;
             viewModel.SetVolume(volume);
             ttNotify.SetToolTip(tbVolume, "Volume: " + volume);
-            
+
             if (viewModel.IsVolumeMuted())
             {
                 btnVolume.BackgroundImage = Properties.Resources.volume_64;
@@ -243,7 +259,7 @@ namespace MusicPlayer.view.form
             if (!viewModel.CheckIfSongFileIsNotExist())
             {
                 DeleteSongIfSongFileIsNotExist();
-                viewModel.PlayPreviousSong();               
+                viewModel.PlayPreviousSong();
             }
 
             ResetDisplay();
@@ -273,14 +289,14 @@ namespace MusicPlayer.view.form
             if (viewModel.RepeatOnce)
             {
                 btnRepeat.BackgroundImage = Properties.Resources.replay_all_64;
-                viewModel.RepeatOnce = false;                
+                viewModel.RepeatOnce = false;
             }
-            else 
+            else
             {
                 btnRepeat.BackgroundImage = Properties.Resources.replay_one_64;
                 viewModel.RepeatOnce = true;
-            } 
-                
+            }
+
         }
 
         #endregion

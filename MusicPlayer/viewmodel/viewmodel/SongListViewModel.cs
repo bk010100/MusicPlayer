@@ -1,4 +1,5 @@
-﻿using MusicPlayer.model.model;
+﻿using MusicPlayer.model;
+using MusicPlayer.model.model;
 using MusicPlayer.model.repository;
 using MusicPlayer.view.form;
 using System.Collections.Generic;
@@ -12,22 +13,24 @@ namespace MusicPlayer.viewmodel
 {
     public class SongListViewModel
     {
-        private readonly SongRepository repository = new SongRepository();
+        private readonly SongRepository repository = SongRepository.Instance;
         private List<Song> songList = new List<Song>();
-        private int selectedSongIndex, selectedPlaylistId = 0;
+        private Playlist selectedPlaylist;
+        private int selectedSongIndex = -1;
 
-        public int SelectedPlaylistId { set => selectedPlaylistId = value; }
+        public Playlist SelectedPlaylist { get => selectedPlaylist; set => selectedPlaylist = value; }
+        public List<Song> SongList => songList;
 
-        public async Task<List<Song>> GetSongList()
+
+        public async Task GetSongList()
         {
-            if (selectedPlaylistId == 0)
+            if (selectedPlaylist == null)
                 songList = await repository.GetAllSongs();
             else
             {
-                
+                MessageBox.Show(selectedPlaylist.Id.ToString());
             }
 
-            return songList;
         }
 
 

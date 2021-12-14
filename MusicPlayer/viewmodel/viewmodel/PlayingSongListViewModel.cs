@@ -1,11 +1,11 @@
 ﻿using MusicPlayer.model.model;
 using System.Collections.Generic;
-using MusicPlayer.common.util;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System;
 using DataGrid = System.Windows.Controls.DataGrid;
+using MusicPlayer.viewmodel.util;
 
 namespace MusicPlayer.viewmodel
 {

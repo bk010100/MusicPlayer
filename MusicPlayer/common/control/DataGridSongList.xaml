@@ -7,7 +7,7 @@
              Height="Auto"
              ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <DockPanel x:Name="dockPanel" MaxWidth="1200" MaxHeight="1200" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="10,0,0,0" VerticalAlignment="Top" LastChildFill="False" HorizontalAlignment="Left">
-        <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False">
+        <DataGrid x:Name="dataGrid" RowBackground="Transparent" Background="Transparent" BorderBrush="Transparent" AreRowDetailsFrozen="True" BorderThickness="0" FontFamily="UD Digi Kyokasho NK-B" FontSize="18" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" CanUserSortColumns="False" VerticalGridLinesBrush="#FFDADADA" MaxWidth="1200" MaxHeight="1200" SelectionMode="Single" AutoGenerateColumns="False" CanUserResizeRows="False" VerticalContentAlignment="Stretch" Margin="0" MinRowHeight="50" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" CanUserResizeColumns="False" HorizontalGridLinesBrush="Black" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="False" ColumnWidth="Auto">
 
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="name" Foreground="White" FontSize="24" FontFamily="Corbel" Header="Name" CanUserSort="False" MinWidth="300" CanUserResize="False" MaxWidth="300"/>
@@ -37,7 +37,10 @@
             </DataGrid.Resources>
             <DataGrid.ContextMenu>
                 <ContextMenu Name="menu">
-                    <MenuItem Name="delete" Header="Delete"/>
+                    <MenuItem Name="play" Header="Play song"/>
+                    <MenuItem Name="queue" Header="Add to queue"/>
+                    <MenuItem Name="playlist" Header="Add to playlist"/>
+                    <MenuItem Name="delete" Header="Delete song"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
 

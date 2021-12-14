@@ -1,6 +1,6 @@
 ﻿using WMPLib;
 
-namespace MusicPlayer.common.util
+namespace MusicPlayer.viewmodel.util
 {
     public class Mp3Player
     {

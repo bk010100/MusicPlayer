@@ -1,8 +1,7 @@
-﻿using MusicPlayer.common.util;
-using MusicPlayer.model.model;
+﻿using MusicPlayer.model.model;
+using MusicPlayer.model.util;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,33 +32,21 @@ namespace MusicPlayer.model.repository
 
         #endregion
 
-        private readonly SqlConnection connection = new SqlConnection()
-        {
-            ConnectionString = SqlUtil.GetConnectionString()
-        };
-        private SqlCommand command = new SqlCommand();
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
-        private readonly DataSet dataset = new DataSet();
+        private readonly DataProvider provider = new DataProvider();
+        private readonly SqlHelper helper;
 
         public SongRepository()
         {
-           
-        }
-
-
-        private async Task RunTask(Task task)
-        {
-            task.Start();
-            await task;
-            task.Dispose();
+            helper = new SqlHelper(provider);
         }
 
 
         private List<Song> ConvertDatasetToSongList()
         {
-            return dataset.Tables[0].AsEnumerable().Select(
+            return provider.DataSet.Tables[0].AsEnumerable().Select(
                 datarow => new Song
                 {
+                    Id = datarow.Field<int>("id"),
                     Name = datarow.Field<string>("name"),
                     Artist = datarow.Field<string>("artist"),
                     FileName = datarow.Field<string>("fileName"),
@@ -71,26 +58,16 @@ namespace MusicPlayer.model.repository
 
         public async Task<List<Song>> GetAllSongs()
         {
-            connection.Open();
+            provider.Connection.Open();
 
-            await RunTask(GetTaskRetrieveAllSongsFromDb());
+            Task getAllSongsTask = helper.GetTaskRetrieveDataTable("TblSong");
+            await SqlHelper.RunSqlTask(getAllSongsTask);
             List<Song> allSongs = ConvertDatasetToSongList();
             
-            connection.Close();
+            provider.Connection.Close();
             return allSongs;
         }
 
-
-
-        private Task GetTaskRetrieveAllSongsFromDb()
-        {
-            return new Task(() =>
-            {
-                string sql = SqlUtil.GetAllFromTable("TblSong");
-                dataAdapter = new SqlDataAdapter(sql, connection);
-                dataAdapter.Fill(dataset);
-            }); 
-        }
 
     }
 }

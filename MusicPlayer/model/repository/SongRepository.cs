@@ -94,6 +94,20 @@ namespace MusicPlayer.model.repository
         }
 
 
+        public Task GetTaskRetriveSongIdFromPlaylist(int playlistId)
+        {
+            return new Task(() =>
+            {
+                provider.DataSet.Clear();
+                provider.Command = new SqlCommand("GetSongIdFromPlaylist", provider.Connection);
+                provider.Command.CommandType = CommandType.StoredProcedure;
+                provider.Command.Parameters.AddWithValue(playlistIdParam, playlistId);
+                provider.DataAdapter = new SqlDataAdapter(provider.Command);
+                provider.DataAdapter.Fill(provider.DataSet);
+            });
+        }
+
+
         public bool AddNewSong(Song song)
         {
             return helper.RunStoredProcedureAndGetResult("AddSong", () =>
@@ -113,20 +127,6 @@ namespace MusicPlayer.model.repository
             {
                 provider.Command.Parameters.AddWithValue(nameParam, name);
                 provider.Command.Parameters.AddWithValue(artistParam, artist);
-            });
-        }
-
-
-        public Task GetTaskRetriveSongIdFromPlaylist(int playlistId)
-        {
-            return new Task(() =>
-            {
-                provider.DataSet.Clear();
-                provider.Command = new SqlCommand("GetSongIdFromPlaylist", provider.Connection);
-                provider.Command.CommandType = CommandType.StoredProcedure;
-                provider.Command.Parameters.AddWithValue(playlistIdParam, playlistId);
-                provider.DataAdapter = new SqlDataAdapter(provider.Command);
-                provider.DataAdapter.Fill(provider.DataSet);
             });
         }
 
@@ -151,11 +151,12 @@ namespace MusicPlayer.model.repository
         }
 
 
-        public bool DeleteSongIdFromPlaylist(int songId)
+        public bool DeleteSongIdFromPlaylist(int songId, int playlistId)
         {
             return helper.RunStoredProcedureAndGetResult("DeleteSongIdFromPlaylist", () =>
             {
                 provider.Command.Parameters.AddWithValue(songIdParam, songId);
+                provider.Command.Parameters.AddWithValue(playlistIdParam, playlistId);
             });
         }
 

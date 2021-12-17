@@ -145,46 +145,52 @@
     <Compile Include="common\control\TrackBar.xaml.cs">
       <DependentUpon>TrackBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogAddSong.cs">
+    <Compile Include="view\dialog\DialogAddSong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogAddSong.Designer.cs">
+    <Compile Include="view\dialog\DialogAddSong.Designer.cs">
       <DependentUpon>DialogAddSong.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogChoosePlaylist.cs">
+    <Compile Include="view\dialog\DialogChoosePlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogChoosePlaylist.Designer.cs">
+    <Compile Include="view\dialog\DialogChoosePlaylist.Designer.cs">
       <DependentUpon>DialogChoosePlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogDeletePlaylist.cs">
+    <Compile Include="view\dialog\DialogAddSongToPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogDeletePlaylist.Designer.cs">
+    <Compile Include="view\dialog\DialogAddSongToPlaylist.Designer.cs">
+      <DependentUpon>DialogAddSongToPlaylist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\dialog\DialogDeletePlaylist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\dialog\DialogDeletePlaylist.Designer.cs">
       <DependentUpon>DialogDeletePlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogDeleteSong.cs">
+    <Compile Include="view\dialog\DialogDeleteSong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogDeleteSong.Designer.cs">
+    <Compile Include="view\dialog\DialogDeleteSong.Designer.cs">
       <DependentUpon>DialogDeleteSong.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogEditSong.cs">
+    <Compile Include="view\dialog\DialogEditSong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogEditSong.Designer.cs">
+    <Compile Include="view\dialog\DialogEditSong.Designer.cs">
       <DependentUpon>DialogEditSong.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogRenamePlaylist.cs">
+    <Compile Include="view\dialog\DialogRenamePlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogRenamePlaylist.Designer.cs">
+    <Compile Include="view\dialog\DialogRenamePlaylist.Designer.cs">
       <DependentUpon>DialogRenamePlaylist.cs</DependentUpon>
     </Compile>
-    <Compile Include="common\dialog\DialogAddPlaylist.cs">
+    <Compile Include="view\dialog\DialogAddPlaylist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="common\dialog\DialogAddPlaylist.Designer.cs">
+    <Compile Include="view\dialog\DialogAddPlaylist.Designer.cs">
       <DependentUpon>DialogAddPlaylist.cs</DependentUpon>
     </Compile>
     <Compile Include="model\util\DataProvider.cs" />
@@ -198,18 +204,10 @@
     </Compile>
     <Compile Include="viewmodel\util\FileUtil.cs" />
     <Compile Include="viewmodel\util\Mp3Player.cs" />
-    <Compile Include="model\data\MusicPlayerDataSet.cs">
-      <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="model\model\Playlist.cs" />
     <Compile Include="model\model\Song.cs" />
     <Compile Include="model\repository\PlaylistRepository.cs" />
     <Compile Include="model\repository\SongRepository.cs" />
-    <Compile Include="model\data\MusicPlayerDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="viewmodel\viewmodel\PlayingSongListViewModel.cs" />
     <Compile Include="viewmodel\viewmodel\PlaylistListViewModel.cs" />
     <Compile Include="viewmodel\viewmodel\SongListViewModel.cs" />
@@ -242,25 +240,28 @@
     <EmbeddedResource Include="common\control\ButtonPlaylist.resx">
       <DependentUpon>ButtonPlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogAddPlaylist.resx">
+    <EmbeddedResource Include="view\dialog\DialogAddPlaylist.resx">
       <DependentUpon>DialogAddPlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogAddSong.resx">
+    <EmbeddedResource Include="view\dialog\DialogAddSong.resx">
       <DependentUpon>DialogAddSong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogChoosePlaylist.resx">
+    <EmbeddedResource Include="view\dialog\DialogChoosePlaylist.resx">
       <DependentUpon>DialogChoosePlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogDeletePlaylist.resx">
+    <EmbeddedResource Include="view\dialog\DialogAddSongToPlaylist.resx">
+      <DependentUpon>DialogAddSongToPlaylist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\dialog\DialogDeletePlaylist.resx">
       <DependentUpon>DialogDeletePlaylist.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogDeleteSong.resx">
+    <EmbeddedResource Include="view\dialog\DialogDeleteSong.resx">
       <DependentUpon>DialogDeleteSong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogEditSong.resx">
+    <EmbeddedResource Include="view\dialog\DialogEditSong.resx">
       <DependentUpon>DialogEditSong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="common\dialog\DialogRenamePlaylist.resx">
+    <EmbeddedResource Include="view\dialog\DialogRenamePlaylist.resx">
       <DependentUpon>DialogRenamePlaylist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\form\FormHomepage.resx">
@@ -283,17 +284,6 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
-    <None Include="model\data\MusicPlayerDataSet.xsc">
-      <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="model\data\MusicPlayerDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MusicPlayerDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="model\data\MusicPlayerDataSet.xss">
-      <DependentUpon>MusicPlayerDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -309,13 +299,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="model\data\MusicPlayerDb.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="model\data\MusicPlayerDb_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>MusicPlayerDb.mdf</DependentUpon>
-    </Content>
     <None Include="png\folder_icon_96.png" />
     <None Include="png\plus_32.png" />
     <None Include="png\replay_one_64.png" />

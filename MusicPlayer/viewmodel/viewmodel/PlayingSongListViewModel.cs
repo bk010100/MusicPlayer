@@ -84,7 +84,9 @@ namespace MusicPlayer.viewmodel
         {
             if (sender != null)
             {
-                if (sender is DataGrid dataGrid && dataGrid.SelectedItem != null && dataGrid.SelectedItems.Count == 1)
+                DataGrid dataGrid = sender as DataGrid;
+                bool isOnlyOneItemSelected = dataGrid.SelectedItem != null && dataGrid.SelectedItems.Count == 1;
+                if (isOnlyOneItemSelected)
                 {
                     return dataGrid.ItemContainerGenerator.ContainerFromItem(dataGrid.SelectedItem) as DataGridRow;
                 }
@@ -96,7 +98,8 @@ namespace MusicPlayer.viewmodel
 
         public void DeleteSong(Song song)
         {
-            if (songList.IndexOf(song) < playingSongIndex) playingSongIndex--;
+            bool isDeletedSongOnTopOfPlayingSong = songList.IndexOf(song) < playingSongIndex;
+            if (isDeletedSongOnTopOfPlayingSong) playingSongIndex--;
             songList.Remove(song);
         }
 
@@ -114,10 +117,8 @@ namespace MusicPlayer.viewmodel
             string songFileName = songList[playingSongIndex].FileName;
             string songFilePath = Mp3Player.GetSongLocation(songFileName);
 
-            if (File.Exists(songFilePath))
-                return true;
-            else 
-                return false;
+            if (File.Exists(songFilePath)) return true;
+            else return false;
         }
 
 

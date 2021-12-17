@@ -16,6 +16,13 @@ namespace MusicPlayer.common.dialog
         }
 
 
+        private void OnLoadDialog(object sender, System.EventArgs e)
+        {
+
+        }
+
+
+
         private void OnClickBtnOk(object sender, System.EventArgs e)
         {
             if (tbName.Text.Length < 2) MessageBox.Show("Playlist name must have at least 2 characters.", "Playlist name is too short!");
@@ -23,7 +30,7 @@ namespace MusicPlayer.common.dialog
             {
                 playlistName = tbName.Text;
                 Close();
-            }            
+            }
         }
 
 
@@ -31,5 +38,7 @@ namespace MusicPlayer.common.dialog
         {
             Close();
         }
+
+
     }
 }

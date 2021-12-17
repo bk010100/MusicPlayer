@@ -99,6 +99,7 @@ namespace MusicPlayer.common.dialog
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -115,9 +116,11 @@ namespace MusicPlayer.common.dialog
             // 
             // DialogRenamePlaylist
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);

@@ -1,7 +1,7 @@
 ﻿
 namespace MusicPlayer.common.dialog
 {
-    partial class DialogEditSong
+    partial class DialogChoosePlaylist
     {
         /// <summary>
         /// Required designer variable.
@@ -29,35 +29,36 @@ namespace MusicPlayer.common.dialog
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbArtist = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lvPlaylists = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbText = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // tbArtist
+            // lvPlaylists
             // 
-            this.tbArtist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbArtist.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbArtist.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbArtist.ForeColor = System.Drawing.Color.Black;
-            this.tbArtist.Location = new System.Drawing.Point(28, 137);
-            this.tbArtist.Name = "tbArtist";
-            this.tbArtist.Size = new System.Drawing.Size(324, 22);
-            this.tbArtist.TabIndex = 19;
+            this.lvPlaylists.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.lvPlaylists.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvPlaylists.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name});
+            this.lvPlaylists.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvPlaylists.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lvPlaylists.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvPlaylists.HideSelection = false;
+            this.lvPlaylists.Location = new System.Drawing.Point(16, 94);
+            this.lvPlaylists.MultiSelect = false;
+            this.lvPlaylists.Name = "lvPlaylists";
+            this.lvPlaylists.Size = new System.Drawing.Size(254, 244);
+            this.lvPlaylists.TabIndex = 0;
+            this.lvPlaylists.UseCompatibleStateImageBehavior = false;
+            this.lvPlaylists.View = System.Windows.Forms.View.List;
             // 
-            // label2
+            // name
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(24, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 23);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Artist(s):";
+            this.name.Text = "Playlist name";
+            this.name.Width = 200;
             // 
             // tbName
             // 
@@ -65,35 +66,37 @@ namespace MusicPlayer.common.dialog
             this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.ForeColor = System.Drawing.Color.Black;
-            this.tbName.Location = new System.Drawing.Point(28, 64);
+            this.tbName.Location = new System.Drawing.Point(16, 44);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(324, 22);
-            this.tbName.TabIndex = 17;
+            this.tbName.ReadOnly = true;
+            this.tbName.Size = new System.Drawing.Size(254, 22);
+            this.tbName.TabIndex = 19;
             // 
-            // label1
+            // lbText
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(24, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 23);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Song name:";
+            this.lbText.AutoSize = true;
+            this.lbText.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbText.ForeColor = System.Drawing.Color.White;
+            this.lbText.Location = new System.Drawing.Point(12, 9);
+            this.lbText.Name = "lbText";
+            this.lbText.Size = new System.Drawing.Size(159, 23);
+            this.lbText.TabIndex = 18;
+            this.lbText.Text = "Choose a playlist:";
             // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(307, 208);
+            this.btnCancel.Location = new System.Drawing.Point(209, 358);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
-            this.btnCancel.TabIndex = 21;
+            this.btnCancel.TabIndex = 23;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.OnClickBtnCancel);
@@ -107,30 +110,32 @@ namespace MusicPlayer.common.dialog
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
-            this.btnOk.Location = new System.Drawing.Point(208, 208);
+            this.btnOk.Location = new System.Drawing.Point(110, 358);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 30);
-            this.btnOk.TabIndex = 20;
+            this.btnOk.TabIndex = 22;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.OnClickBtnOk);
             // 
-            // DialogEditSong
+            // DialogChoosePlaylist
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(300, 400);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.tbArtist);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbText);
+            this.Controls.Add(this.lvPlaylists);
+            this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DialogEditSong";
+            this.Name = "DialogChoosePlaylist";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -142,10 +147,10 @@ namespace MusicPlayer.common.dialog
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbArtist;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListView lvPlaylists;
+        private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbText;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
     }

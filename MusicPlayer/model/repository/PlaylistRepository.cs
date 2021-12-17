@@ -102,13 +102,5 @@ namespace MusicPlayer.model.repository
             });
         }
 
-
-        public bool DeleteSongsFromDeletedPlaylist(int playlistId)
-        {
-            return helper.RunStoredProcedureAndGetResult("DeleteSongsFromDeletedPlaylist", () =>
-            {
-                provider.Command.Parameters.AddWithValue(idParam, playlistId);
-            });
-        }
     }
 }

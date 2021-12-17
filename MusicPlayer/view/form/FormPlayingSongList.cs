@@ -29,10 +29,12 @@ namespace MusicPlayer.view.form
             SetDataBindingForDataGrid();
             ResizeTextAndColumnInDataGrid();
 
+            // Click events for data grid menu items
             dgSongList.dataGrid.MouseDoubleClick += ChangeSongOnDoubleClick;
             dgSongList.play.Click += OnClickMenuItemPlaySong;
             dgSongList.delete.Click += OnClickMenuItemDeleteSong;
 
+            // Collapse all unecessary menu items
             dgSongList.queue.Visibility = System.Windows.Visibility.Collapsed;
             dgSongList.edit.Visibility = System.Windows.Visibility.Collapsed;
             dgSongList.playlist.Visibility = System.Windows.Visibility.Collapsed;
@@ -45,7 +47,7 @@ namespace MusicPlayer.view.form
             if (!viewModel.CheckIfSongFileIsNotExist()) DeleteSongIfSongFileIsNotExist();
 
             PlaySongAndChangeTitle();
-            viewModel.Timer.Tick += SetOnTimerTick;
+            viewModel.Timer.Tick += SetOnEachTimerTick;
         }
 
 
@@ -63,14 +65,14 @@ namespace MusicPlayer.view.form
                 viewModel.PlayingSongIndex = viewModel.SongList.IndexOf(selectedSong);
 
                 PlaySongAndChangeTitle();
-                ResetDisplay();
+                ResetPlayerDisplay();
             }
         }
 
 
         private void PlayNextSongWhenSongEnds()
         {
-            viewModel.PlayNextSongAfterFinishedCurrentSong(ResetDisplay);
+            viewModel.PlayNextSongAfterFinishedCurrentSong(ResetPlayerDisplay);
         }
 
 
@@ -87,7 +89,7 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void SetOnTimerTick(object sender, System.EventArgs e)
+        private void SetOnEachTimerTick(object sender, System.EventArgs e)
         {
             // Try catch in case song list is empty
             Song playingSong = new Song();
@@ -117,7 +119,7 @@ namespace MusicPlayer.view.form
         }
 
 
-        private void ResetDisplay()
+        private void ResetPlayerDisplay()
         {
             lbSongTimer.Text = "00:00";
             sliderSongDuration.slider.Value = 0;
@@ -157,7 +159,7 @@ namespace MusicPlayer.view.form
             if (e.LeftButton == MouseButtonState.Pressed)
                 viewModel.PlayingSongIndex = viewModel.GetDataGridSelectedRow(sender).GetIndex();
             PlaySongAndChangeTitle();
-            ResetDisplay();
+            ResetPlayerDisplay();
         }
 
 
@@ -256,7 +258,7 @@ namespace MusicPlayer.view.form
                 PlaySongAndChangeTitle();            // After delete current playing song, the next song automatically become the playing song
             }
 
-            ResetDisplay();
+            ResetPlayerDisplay();
         }
 
 
@@ -270,7 +272,7 @@ namespace MusicPlayer.view.form
                 viewModel.PlayPreviousSong();
             }
 
-            ResetDisplay();
+            ResetPlayerDisplay();
         }
 
 

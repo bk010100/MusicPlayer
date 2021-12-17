@@ -30,9 +30,30 @@ namespace MusicPlayer.viewmodel
         }
 
 
-        public void AddNewPlaylistToDb(string name)
+        private bool CheckIfPlaylistAlreadyExisted(string name)
         {
-            if (repository.AddNewPlaylist(name))
+            bool result = false;
+            for (int index = 0; index < playlistList.Count; index ++)
+            {
+                if (name == playlistList[index].Name)
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+
+
+        public bool AddNewPlaylistToDbAndReturnResult(string name)
+        {
+            bool isPlaylistAdded = repository.AddNewPlaylist(name);
+            if (CheckIfPlaylistAlreadyExisted(name))
+            {
+                MessageBox.Show("A playlist with this name has already existed. Please chooose another name.", "Duplicate playlist!");
+                return false;
+            }
+            else if (isPlaylistAdded)
             {
                 Playlist newPlaylist = new Playlist
                 {
@@ -40,24 +61,35 @@ namespace MusicPlayer.viewmodel
                     Name = name
                 };
                 playlistList.Add(newPlaylist);
+                MessageBox.Show("Add playlist successfully.", "Yeahhhh!");
+                return true;
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Add playlist failed!");
+                MessageBox.Show("Something went wrong :(", "Add playlist failed!");
+                return false;
             }
         }
 
 
-        public void UpdatePlaylistNameToDb(int index, string name)
+        public bool UpdatePlaylistNameToDbAndReturnResult(int index, string name)
         {
-            playlistList[index].Name = name;
-            if (repository.UpdatePlaylistNameById(playlistList[index].Id, name))
+            bool isPlaylistUpdated = repository.UpdatePlaylistNameById(playlistList[index].Id, name);
+            if (CheckIfPlaylistAlreadyExisted(name))
             {
-                MessageBox.Show("Rename playlist successfully.", "Success!");
+                MessageBox.Show("A playlist with this name has already existed. Please chooose another name.", "Duplicate playlist!");
+                return false;
+            }
+            else if(isPlaylistUpdated)
+            {
+                playlistList[index].Name = name;
+                MessageBox.Show("Rename playlist successfully.", "Yeahhhh!");
+                return true;
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Update failed!");
+                MessageBox.Show("Something went wrong :(", "Update playlist failed!");
+                return false;
             }
         }
 
@@ -65,14 +97,15 @@ namespace MusicPlayer.viewmodel
         public void DeletePlaylistFromDb(int index)
         {
             int id = playlistList[index].Id;
-            if (repository.DeletePlaylistById(id) && repository.DeleteSongsFromDeletedPlaylist(id))
+            bool isPlaylistDeleted = repository.DeletePlaylistById(id);
+            if (isPlaylistDeleted)
             {
-                MessageBox.Show("Delete playlist successfully.", "Success!");
+                MessageBox.Show("Delete playlist successfully.", "Yeahhhh!");
                 playlistList.RemoveAt(index);
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Delete failed!");
+                MessageBox.Show("Something went wrong :(", "Delete playlist failed!");
             }
         }
 

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Input;
+using Application = System.Windows.Forms.Application;
 using Binding = System.Windows.Data.Binding;
 
 namespace MusicPlayer.view.form
@@ -39,7 +41,7 @@ namespace MusicPlayer.view.form
 
         private void SetTextForPlaylistProfile()
         {
-            lbPlaylistName.Text = viewModel.SelectedPlaylist == null ? "All songs" : viewModel.SelectedPlaylist.Name;
+            lbPlaylistName.Text = !viewModel.CheckIfThisFormWasOpenFromPlaylist() ? "All songs" : viewModel.SelectedPlaylist.Name;
             lbSongCount.Text = "Number of songs: " + viewModel.SongList.Count;
         }
 
@@ -65,7 +67,33 @@ namespace MusicPlayer.view.form
 
         private void SetOnDoubleMouseClickOnDataRow()
         {
-            dgSongList.dataGrid.MouseDoubleClick += viewModel.PlayPlaylistOnDoubleClick;
+            dgSongList.dataGrid.MouseDoubleClick += PlayPlaylistOnDoubleClick;
+        }
+
+
+        private void PlayPlaylistOnDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.GetSelectedSongIndex(sender);
+            OpenPlayingSongsForm();
+        }
+
+
+        private void OpenPlayingSongsForm()
+        {
+            if (Application.OpenForms["FormPlayingSongList"] != null)
+            {
+                Application.OpenForms["FormPlayingSongList"].Dispose();
+            }
+
+            FormPlayingSongList playingSongsForm = new FormPlayingSongList()
+            {
+                ViewModel = new PlayingSongListViewModel
+                {
+                    PlayingSongIndex = viewModel.SelectSongIndex,
+                    SongList = viewModel.SongList
+                }
+            };
+            playingSongsForm.Show();
         }
 
 
@@ -83,39 +111,70 @@ namespace MusicPlayer.view.form
         }
 
 
+        private bool CheckIfItemIsSelected()
+        {
+            return dgSongList.dataGrid.SelectedItem != null;
+        }
+
+
         private void OpenEditSongDialogOnClickMenuItem(object sender, RoutedEventArgs e)
         {
-            if (dgSongList.dataGrid.SelectedItem != null)
+            if (CheckIfItemIsSelected())
             {
                 Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
-                viewModel.EditSongOnDialogResult(selectedSong, () =>
+                DialogEditSong dialogEditSong = new DialogEditSong
                 {
+                    SongName = selectedSong.Name,
+                    SongArtist = selectedSong.Artist
+                };
+                dialogEditSong.ShowDialog();
+
+                if (dialogEditSong.SongInfo != null)
+                {
+                    viewModel.EditSongToDb(selectedSong,
+                                           dialogEditSong.SongName,
+                                           dialogEditSong.SongArtist);
                     dgSongList.dataGrid.Items.Refresh();
-                });
+                }
+                
             }
             
         }
 
 
-        private void OpenDeleteSongDialogOnClickMenuItem(object sender, RoutedEventArgs e)
+        private void OpenAddSongToPlaylistDialogOnClickMenuItem(object sender, RoutedEventArgs e)
         {
-            if (dgSongList.dataGrid.SelectedItem != null)
+            if (CheckIfItemIsSelected())
             {
                 Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
-                viewModel.DeleteSongOnDialogResult(selectedSong, () =>
+                DialogChoosePlaylist dialogChoosePlaylist = new DialogChoosePlaylist();
+                dialogChoosePlaylist.ShowDialog();
+
+                if (dialogChoosePlaylist.Playlist != null)
                 {
-                    dgSongList.dataGrid.Items.Refresh();
-                });
+                    viewModel.AddSongToPlaylistInDb(selectedSong.Id, dialogChoosePlaylist.Playlist.Id);
+                }
             }
         }
 
 
-        private void OpenAddSongToPlaylistDialogOnClickMenuItem(object sender, RoutedEventArgs e)
+        private void OpenDeleteSongDialogOnClickMenuItem(object sender, RoutedEventArgs e)
         {
-            if (dgSongList.dataGrid.SelectedItem != null)
+            if (CheckIfItemIsSelected())
             {
-                Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
-                viewModel.AddSongToPlaylistOnDialogResult(selectedSong);
+                DialogDeleteSong dialogDeleteSong = new DialogDeleteSong();
+                if (viewModel.SelectedPlaylist != null)
+                {
+                    dialogDeleteSong.PlaylistId = viewModel.SelectedPlaylist.Id;
+                }
+                dialogDeleteSong.ShowDialog();
+
+                if (dialogDeleteSong.DeleteConfirm)
+                {
+                    Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
+                    viewModel.DeleteSongFromDb(selectedSong);
+                    dgSongList.dataGrid.Items.Refresh();
+                }
             }
         }
 
@@ -128,20 +187,26 @@ namespace MusicPlayer.view.form
 
         private void PlayPlaylistOnClickMenuItem(object sender, RoutedEventArgs e)
         {
-            if (dgSongList.dataGrid.SelectedItem != null)
+            if (CheckIfItemIsSelected())
             {
                 Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
-                viewModel.PlayPlaylistOnClickMenuItem(selectedSong);
+                viewModel.SelectSongIndex = viewModel.SongList.IndexOf(selectedSong);
+                OpenPlayingSongsForm();
             }
         }
 
 
         private void OnClickBtnAddSong(object sender, EventArgs e)
         {
-            viewModel.AddSongOnDialogResult(() =>
+            DialogAddSong dialogAddSong = new DialogAddSong();
+            dialogAddSong.ShowDialog();
+
+            if (dialogAddSong.NewSong != null)
             {
+                viewModel.MoveSongToMainDir(dialogAddSong.FilePath);
+                viewModel.AddSongToDb(dialogAddSong.NewSong);
                 dgSongList.dataGrid.Items.Refresh();
-            });
+            }
         }
 
 

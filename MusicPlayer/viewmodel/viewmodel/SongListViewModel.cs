@@ -1,15 +1,11 @@
-﻿using MusicPlayer.common.dialog;
-using MusicPlayer.model;
+﻿using MusicPlayer.model;
 using MusicPlayer.model.model;
 using MusicPlayer.model.repository;
-using MusicPlayer.view.form;
 using MusicPlayer.viewmodel.util;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Windows.Input;
 using DataGrid = System.Windows.Controls.DataGrid;
 
 namespace MusicPlayer.viewmodel
@@ -21,13 +17,15 @@ namespace MusicPlayer.viewmodel
         private Playlist selectedPlaylist;
         private int selectedSongIndex = -1;
 
+
         public Playlist SelectedPlaylist { get => selectedPlaylist; set => selectedPlaylist = value; }
+        public int SelectSongIndex { get => selectedSongIndex; set => selectedSongIndex = value; }
         public List<Song> SongList => songList;
 
 
         public async Task GetSongList()
         {
-            if (selectedPlaylist == null)
+            if (!CheckIfThisFormWasOpenFromPlaylist())
             {
                 songList = await repository.GetAllSongs();
             }
@@ -46,29 +44,7 @@ namespace MusicPlayer.viewmodel
         }
 
 
-        public void PlayPlaylistOnDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (Application.OpenForms["FormPlayingSongList"] != null)
-            {
-                Application.OpenForms["FormPlayingSongList"].Dispose();                
-            }
-            GetSelectedSongIndex(sender);
-            OpenPlayingSongsForm();
-        }
-
-
-        public void PlayPlaylistOnClickMenuItem(Song song)
-        {
-            if (Application.OpenForms["FormPlayingSongList"] != null)
-            {
-                Application.OpenForms["FormPlayingSongList"].Dispose();
-            }
-            selectedSongIndex = songList.IndexOf(song);
-            OpenPlayingSongsForm();
-        }
-
-
-        private void GetSelectedSongIndex(object sender)
+        public void GetSelectedSongIndex(object sender)
         {
             if (sender != null)
             {
@@ -81,39 +57,50 @@ namespace MusicPlayer.viewmodel
         }
 
 
-        private void OpenPlayingSongsForm()
+        public bool CheckIfThisFormWasOpenFromPlaylist()
         {
-            FormPlayingSongList playingSongsForm = new FormPlayingSongList()
-            {
-                ViewModel = new PlayingSongListViewModel
-                {
-                    PlayingSongIndex = selectedSongIndex,
-                    SongList = songList
-                }
-            };
+            return selectedPlaylist != null;
+        }
 
-            playingSongsForm.Show();
+
+        private bool CheckIfThisSongAlreadyExisted(string name, string artist)
+        {
+            bool result = false;
+            for (int index = 0; index < songList.Count; index++)
+            {
+                if (name == songList[index].Name && artist == songList[index].Artist)
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
 
 
         #region CRUD
 
-        private void AddSongToDb(Song song)
+        public void AddSongToDb(Song song)
         {
-            if (repository.AddNewSong(song))
+            bool isSongAdded = repository.AddNewSong(song);
+            if (CheckIfThisSongAlreadyExisted(song.Name, song.Artist))
+            {
+                MessageBox.Show("A song with this name and artist has already existed.", "Duplicate song!");
+            }
+            else if (isSongAdded)
             {
                 song.Id = repository.GetSongId(song.Name, song.Artist);
                 songList.Add(song);
-                MessageBox.Show("Add song succressfully.", "Succress!");
+                MessageBox.Show("Add song succressfully.", "Yeahhhh!");
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Add song failed!");
+                MessageBox.Show("Something went wrong :(", "Add song failed!");
             }
         }
 
 
-        private void MoveSongToMainDir(string filePath)
+        public void MoveSongToMainDir(string filePath)
         {
             if (!FileUtil.CheckIfFileExistInMainDir(filePath))
             {
@@ -122,120 +109,67 @@ namespace MusicPlayer.viewmodel
         }
 
 
-        private void EditSongToDb(Song song, string name, string artist)
+        public void EditSongToDb(Song song, string newName, string newArtist)
         {
-            if (repository.UpdateSong(song.Id, name, artist))
+            bool isSongUpdated = repository.UpdateSong(song.Id, newName, newArtist);
+            if (CheckIfThisSongAlreadyExisted(song.Name, song.Artist))
+            {
+                MessageBox.Show("A song with this name and artist has already existed.", "Duplicate song!");
+            }
+            else if (isSongUpdated)
             {
                 int index = songList.IndexOf(song);
-                songList[index].Name = name;
-                songList[index].Artist = artist;
-                MessageBox.Show("update song successfully.", "Successs!");
+                songList[index].Name = newName;
+                songList[index].Artist = newArtist;
+                MessageBox.Show("Update song successfully.", "Yeahhhh!");
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Update failed!");
+                MessageBox.Show("Something went wrong :(", "Update song failed!");
             }    
         }
 
 
-        private void DeleteSongFromDb(Song song)
+        public void DeleteSongFromDb(Song song)
         {
             int id = song.Id;
-            if (selectedPlaylist == null)
-            {
-                if (repository.DeleteSong(id) && repository.DeleteSongIdFromPlaylist(id))
-                {
-                    songList.Remove(song);
-                    MessageBox.Show("Delete song successfully!", "Success!");
-                }
-                else
-                {
-                    MessageBox.Show("Please recheck your database connection.", "Delete failed!");
-                }
-            }
-            else
+            if (!CheckIfThisFormWasOpenFromPlaylist())
             {
                 if (repository.DeleteSong(id))
                 {
                     songList.Remove(song);
-                    MessageBox.Show("Delete song successfully!", "Success!");
+                    MessageBox.Show("Delete song successfully!", "Yeahhhh!");
                 }
                 else
                 {
-                    MessageBox.Show("Please recheck your database connection.", "Delete failed!");
+                    MessageBox.Show("Something went wrong :(", "Delete song failed!");
+                }
+            }
+            else
+            {
+                if (repository.DeleteSongIdFromPlaylist(id, selectedPlaylist.Id))
+                {
+                    songList.Remove(song);
+                    MessageBox.Show("Delete song successfully!", "Yeahhhh!");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong :(", "Delete song failed!");
                 }
             }
         }
 
 
-        private void AddSongToPlaylistInDb(int songId, int playlistId)
+        public void AddSongToPlaylistInDb(int songId, int playlistId)
         {
-            if (repository.AddSongToPlaylist(songId, playlistId))
+            bool isSongAddedToPlaylist = repository.AddSongToPlaylist(songId, playlistId);
+            if (isSongAddedToPlaylist)
             {
-                MessageBox.Show("Add song to playlist successfully!", "Success!");
+                MessageBox.Show("Add song to playlist successfully!", "Yeahhhh!");
             }
             else
             {
-                MessageBox.Show("Please recheck your database connection.", "Failed!");
-            }
-        }
-
-
-        #endregion
-
-
-        #region Dialog events
-
-        public void AddSongOnDialogResult(Action viewChange)
-        {
-            DialogAddSong dialogAddSong = new DialogAddSong();
-            dialogAddSong.ShowDialog();
-            if (dialogAddSong.NewSong != null)
-            {
-                MoveSongToMainDir(dialogAddSong.FilePath);
-                AddSongToDb(dialogAddSong.NewSong);
-                viewChange();
-            }
-        }
-
-
-        public void EditSongOnDialogResult(Song song, Action viewChange)
-        {
-            DialogEditSong dialogEditSong = new DialogEditSong
-            {
-                SongName = song.Name,
-                SongArtist = song.Artist
-            };
-            dialogEditSong.ShowDialog();
-
-            if (dialogEditSong.SongInfo != null)
-            {
-                EditSongToDb(song, dialogEditSong.SongName, dialogEditSong.SongArtist);
-                viewChange();
-            }                
-        }
-
-
-        public void DeleteSongOnDialogResult(Song song, Action viewChange)
-        {
-            DialogDeleteSong dialogDeleteSong = new DialogDeleteSong();
-            if (selectedPlaylist != null) dialogDeleteSong.PlaylistId = selectedPlaylist.Id;
-            dialogDeleteSong.ShowDialog();
-            if (dialogDeleteSong.DeleteConfirm)
-            {
-                DeleteSongFromDb(song);
-                viewChange();
-            }
-        }
-
-
-        public void AddSongToPlaylistOnDialogResult(Song song)
-        {
-            DialogChoosePlaylist dialogChoosePlaylist = new DialogChoosePlaylist();
-            dialogChoosePlaylist.ShowDialog();
-            if (dialogChoosePlaylist.Playlist != null)
-            {
-                AddSongToPlaylistInDb(song.Id, dialogChoosePlaylist.Playlist.Id);
+                MessageBox.Show("Something went wrong :(", "Add song to play list failed!");
             }
         }
 

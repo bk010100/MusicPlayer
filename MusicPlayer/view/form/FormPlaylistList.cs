@@ -116,14 +116,15 @@ namespace MusicPlayer.view.form
             addPlaylistDialog.ShowDialog();
 
             // Check if user click OK 
-            if (addPlaylistDialog.PlaylistName.Length > 0)
+            bool isDialogReturnValidName = addPlaylistDialog.PlaylistName.Length > 0;
+            if (isDialogReturnValidName)
             {
                 Playlist playlist = new Playlist
                 {
                     Name = addPlaylistDialog.PlaylistName
                 };
-                AddNewBtnPlaylist(playlist);
-                viewModel.AddNewPlaylistToDb(playlist.Name);
+                bool isPlaylistAddedSuccessfully = viewModel.AddNewPlaylistToDbAndReturnResult(playlist.Name);
+                if (isPlaylistAddedSuccessfully) AddNewBtnPlaylist(playlist);
             }
         }
 
@@ -149,12 +150,13 @@ namespace MusicPlayer.view.form
                 };
                 renameDialog.ShowDialog();
 
-                // Check if user click OK
-                if (renameDialog.NewName.Length > 0)
+                bool isDialogReturnNewValidName = renameDialog.NewName.Length > 0;
+                if (isDialogReturnNewValidName)
                 {
                     ButtonPlaylist selectedButton = flPanel.Controls[index + 1] as ButtonPlaylist;
-                    ChangeButtonPlaylistName(selectedButton, renameDialog.NewName);
-                    viewModel.UpdatePlaylistNameToDb(index, renameDialog.NewName);
+                    bool isPlaylistUpdatedSuccessfully = viewModel.UpdatePlaylistNameToDbAndReturnResult(index, renameDialog.NewName);
+                    if (isPlaylistUpdatedSuccessfully)
+                        ChangeButtonPlaylistName(selectedButton, renameDialog.NewName);
                 }
             }
         }
@@ -171,8 +173,8 @@ namespace MusicPlayer.view.form
                 };
                 deletePlaylistDialog.ShowDialog();
 
-                // Check if user click OK
-                if (deletePlaylistDialog.DeleteConfirmed)
+                bool isUserClickOk = deletePlaylistDialog.DeleteConfirmed;
+                if (isUserClickOk)
                 {
                     flPanel.Controls[index + 1].Dispose();
                     btnPlaylistList.RemoveAt(index);

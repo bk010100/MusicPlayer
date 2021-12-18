@@ -308,6 +308,7 @@ namespace MusicPlayer
             this.MinimizeBox = false;
             this.Name = "FormHomepage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Homepage";
             this.Load += new System.EventHandler(this.OnLoadForm);
             this.panel.ResumeLayout(false);
             this.pnBackground.ResumeLayout(false);

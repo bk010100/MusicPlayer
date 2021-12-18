@@ -5,12 +5,11 @@ namespace MusicPlayer.common.dialog
 {
     public partial class DialogEditSong : Form
     {
-        private string[] songInfo = new string[2];
+        private string songName, songArtist;
 
 
-        public string[] SongInfo => songInfo;
-        public string SongName { get => songInfo[0]; set => songInfo[0] = value; }
-        public string SongArtist { get => songInfo[1]; set => songInfo[1] = value; }
+        public string SongName { get => songName; set => songName = value; }
+        public string SongArtist { get => songArtist; set => songArtist = value; }
 
 
         public DialogEditSong()
@@ -27,15 +26,21 @@ namespace MusicPlayer.common.dialog
 
         private void OnClickBtnOk(object sender, EventArgs e)
         {
-            SongName = tbName.Text;
-            SongArtist = tbArtist.Text;
-            Close();
+            if (tbName.Text == null || tbName.Text.Length < 2) MessageBox.Show("Song name must have at least 2 characters.", "Song name is too short!");
+            else if (tbArtist.Text == null || tbArtist.Text.Length < 2) MessageBox.Show("Artist(s) name must have at least 2 characters.", "Artist(s) name is too short!");
+            else
+            {
+                SongName = tbName.Text;
+                SongArtist = tbArtist.Text;
+                Close();
+            }                
         }
 
 
         private void OnClickBtnCancel(object sender, EventArgs e)
         {
-            songInfo = null;
+            songName = null;
+            songArtist = null;
             Close();
         }
 

@@ -65,8 +65,8 @@ namespace MusicPlayer.common.dialog
 
         private void OnClickBtnOk(object sender, EventArgs e)
         {
-            if (tbName.Text == null || tbName.Text.Length < 4) MessageBox.Show("Song name must have at least 4 characters.", "Song name is too short!");
-            else if (tbArtist.Text == null || tbArtist.Text.Length < 4) MessageBox.Show("Artist(s) name must have at least 4 characters.", "Artist(s) name is too short!");
+            if (tbName.Text == null || tbName.Text.Length < 2) MessageBox.Show("Song name must have at least 2 characters.", "Song name is too short!");
+            else if (tbArtist.Text == null || tbArtist.Text.Length < 2) MessageBox.Show("Artist(s) name must have at least 2 characters.", "Artist(s) name is too short!");
             else
             {
                 newSong = new Song

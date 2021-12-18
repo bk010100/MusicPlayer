@@ -32,64 +32,64 @@ namespace MusicPlayer.viewmodel
 
         private bool CheckIfPlaylistAlreadyExisted(string name)
         {
-            bool result = false;
-            for (int index = 0; index < playlistList.Count; index ++)
-            {
-                if (name == playlistList[index].Name)
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
+            int index = -1;
+            index = playlistList.FindIndex(playlist => playlist.Name == name);
+            if (index == -1) return false;
+            else return true;
         }
 
 
         public bool AddNewPlaylistToDbAndReturnResult(string name)
         {
-            bool isPlaylistAdded = repository.AddNewPlaylist(name);
             if (CheckIfPlaylistAlreadyExisted(name))
             {
                 MessageBox.Show("A playlist with this name has already existed. Please chooose another name.", "Duplicate playlist!");
                 return false;
             }
-            else if (isPlaylistAdded)
-            {
-                Playlist newPlaylist = new Playlist
-                {
-                    Id = repository.GetPlaylistIdByName(name),
-                    Name = name
-                };
-                playlistList.Add(newPlaylist);
-                MessageBox.Show("Add playlist successfully.", "Yeahhhh!");
-                return true;
-            }
             else
             {
-                MessageBox.Show("Something went wrong :(", "Add playlist failed!");
-                return false;
+                bool isPlaylistAdded = repository.AddNewPlaylist(name);
+                if (isPlaylistAdded)
+                {
+                    Playlist newPlaylist = new Playlist
+                    {
+                        Id = repository.GetPlaylistIdByName(name),
+                        Name = name
+                    };
+                    playlistList.Add(newPlaylist);
+                    MessageBox.Show("Add playlist successfully.", "Yeahhhh!");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong :(", "Add playlist failed!");
+                    return false;
+                }
             }
         }
 
 
         public bool UpdatePlaylistNameToDbAndReturnResult(int index, string name)
         {
-            bool isPlaylistUpdated = repository.UpdatePlaylistNameById(playlistList[index].Id, name);
             if (CheckIfPlaylistAlreadyExisted(name))
             {
                 MessageBox.Show("A playlist with this name has already existed. Please chooose another name.", "Duplicate playlist!");
                 return false;
             }
-            else if(isPlaylistUpdated)
-            {
-                playlistList[index].Name = name;
-                MessageBox.Show("Rename playlist successfully.", "Yeahhhh!");
-                return true;
-            }
             else
             {
-                MessageBox.Show("Something went wrong :(", "Update playlist failed!");
-                return false;
+                bool isPlaylistUpdated = repository.UpdatePlaylistNameById(playlistList[index].Id, name);
+                if (isPlaylistUpdated)
+                {
+                    playlistList[index].Name = name;
+                    MessageBox.Show("Rename playlist successfully.", "Yeahhhh!");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong :(", "Update playlist failed!");
+                    return false;
+                }
             }
         }
 

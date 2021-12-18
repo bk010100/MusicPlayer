@@ -29,13 +29,17 @@ namespace MusicPlayer.view.dialog
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.artist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvSongList = new System.Windows.Forms.DataGridView();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.lbText = new System.Windows.Forms.Label();
+            this.tbArtist = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSongList)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -54,6 +58,7 @@ namespace MusicPlayer.view.dialog
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.OnClickBtnCancel);
             // 
             // btnOk
             // 
@@ -70,41 +75,94 @@ namespace MusicPlayer.view.dialog
             this.btnOk.TabIndex = 24;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Click += new System.EventHandler(this.OnClickBtnOk);
             // 
-            // dataGridView1
+            // dgvSongList
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.name,
-            this.artist,
-            this.length});
-            this.dataGridView1.Location = new System.Drawing.Point(63, 127);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(309, 150);
-            this.dataGridView1.TabIndex = 26;
+            this.dgvSongList.AllowUserToAddRows = false;
+            this.dgvSongList.AllowUserToDeleteRows = false;
+            this.dgvSongList.AllowUserToResizeColumns = false;
+            this.dgvSongList.AllowUserToResizeRows = false;
+            this.dgvSongList.BackgroundColor = System.Drawing.Color.Black;
+            this.dgvSongList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvSongList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvSongList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSongList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvSongList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSongList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSongList.GridColor = System.Drawing.Color.Gray;
+            this.dgvSongList.Location = new System.Drawing.Point(16, 139);
+            this.dgvSongList.MultiSelect = false;
+            this.dgvSongList.Name = "dgvSongList";
+            this.dgvSongList.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSongList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvSongList.RowHeadersVisible = false;
+            this.dgvSongList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvSongList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvSongList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvSongList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSongList.Size = new System.Drawing.Size(356, 239);
+            this.dgvSongList.TabIndex = 26;
             // 
-            // name
+            // tbName
             // 
-            this.name.Frozen = true;
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
+            this.tbName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbName.Location = new System.Drawing.Point(12, 44);
+            this.tbName.Name = "tbName";
+            this.tbName.ReadOnly = true;
+            this.tbName.Size = new System.Drawing.Size(254, 22);
+            this.tbName.TabIndex = 28;
             // 
-            // artist
+            // lbText
             // 
-            this.artist.Frozen = true;
-            this.artist.HeaderText = "Artist";
-            this.artist.Name = "artist";
-            this.artist.ReadOnly = true;
+            this.lbText.AutoSize = true;
+            this.lbText.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbText.ForeColor = System.Drawing.Color.White;
+            this.lbText.Location = new System.Drawing.Point(8, 9);
+            this.lbText.Name = "lbText";
+            this.lbText.Size = new System.Drawing.Size(138, 23);
+            this.lbText.TabIndex = 27;
+            this.lbText.Text = "Choose a song:";
             // 
-            // length
+            // tbArtist
             // 
-            this.length.Frozen = true;
-            this.length.HeaderText = "Length";
-            this.length.Name = "length";
-            this.length.ReadOnly = true;
+            this.tbArtist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbArtist.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbArtist.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbArtist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbArtist.Location = new System.Drawing.Point(12, 88);
+            this.tbArtist.Name = "tbArtist";
+            this.tbArtist.ReadOnly = true;
+            this.tbArtist.Size = new System.Drawing.Size(254, 22);
+            this.tbArtist.TabIndex = 29;
             // 
             // DialogAddSongToPlaylist
             // 
@@ -114,7 +172,10 @@ namespace MusicPlayer.view.dialog
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(400, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tbArtist);
+            this.Controls.Add(this.tbName);
+            this.Controls.Add(this.lbText);
+            this.Controls.Add(this.dgvSongList);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.ForeColor = System.Drawing.Color.White;
@@ -125,8 +186,10 @@ namespace MusicPlayer.view.dialog
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.OnLoadDialog);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSongList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,9 +197,9 @@ namespace MusicPlayer.view.dialog
 
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn artist;
-        private System.Windows.Forms.DataGridViewTextBoxColumn length;
+        private System.Windows.Forms.DataGridView dgvSongList;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label lbText;
+        private System.Windows.Forms.TextBox tbArtist;
     }
 }

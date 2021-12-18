@@ -135,16 +135,6 @@ namespace MusicPlayer.view.form
         }
 
 
-        #region DataGrid events
-
-        private void SetTitleToPlayingSongName()
-        {
-            Song playingSong = viewModel.SongList[viewModel.PlayingSongIndex];
-            string text = "Now playing: " + playingSong.Name;
-            lbTitle.Text = TextUtil.GetTextWithLimitedLength(text, 60);
-        }
-
-
         private void DeleteSongIfSongFileIsNotExist()
         {
             MessageBox.Show("File is not exist: " + viewModel.GetPlayerSongUrl(), "File path invalid!");
@@ -152,6 +142,18 @@ namespace MusicPlayer.view.form
             viewModel.DeleteSong(song);
             dgSongList.dataGrid.Items.Refresh();
         }
+
+
+        #region DataGrid events
+
+        private void SetTitleToPlayingSongName()
+        {
+            Song playingSong = viewModel.SongList[viewModel.PlayingSongIndex];
+            string text = "Now playing: " + playingSong.Name + " - " + playingSong.Artist;
+            lbTitle.Text = TextUtil.GetTextWithLimitedLength(text, 60);
+            Text = TextUtil.GetTextWithLimitedLength(text, 60);
+        }
+
 
 
         private void ChangeSongOnDoubleClick(object sender, MouseButtonEventArgs e)

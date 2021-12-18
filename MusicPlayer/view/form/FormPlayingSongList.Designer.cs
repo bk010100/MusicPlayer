@@ -33,6 +33,8 @@ namespace MusicPlayer.view.form
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlayingSongList));
             this.pnPlayerBar = new System.Windows.Forms.Panel();
             this.btnRepeat = new System.Windows.Forms.Button();
+            this.tbSongDurationBar = new System.Windows.Forms.Integration.ElementHost();
+            this.sliderSongDuration = new MusicPlayer.common.control.TrackBar();
             this.lbSongLength = new System.Windows.Forms.Label();
             this.lbSongTimer = new System.Windows.Forms.Label();
             this.tbVolume = new System.Windows.Forms.TrackBar();
@@ -47,8 +49,6 @@ namespace MusicPlayer.view.form
             this.pbIcon = new System.Windows.Forms.PictureBox();
             this.btnCloseWindow = new System.Windows.Forms.Button();
             this.btnMinimizeWindow = new System.Windows.Forms.Button();
-            this.tbSongDurationBar = new System.Windows.Forms.Integration.ElementHost();
-            this.sliderSongDuration = new MusicPlayer.common.control.TrackBar();
             this.gradientPanel2 = new MusicPlayer.common.control.GradientPanel();
             this.dataGrid = new System.Windows.Forms.Integration.ElementHost();
             this.dgSongList = new MusicPlayer.common.control.SongDataGrid();
@@ -93,6 +93,17 @@ namespace MusicPlayer.view.form
             this.btnRepeat.TabIndex = 9;
             this.btnRepeat.UseVisualStyleBackColor = true;
             this.btnRepeat.Click += new System.EventHandler(this.OnClickBtnRepeat);
+            // 
+            // tbSongDurationBar
+            // 
+            this.tbSongDurationBar.BackColor = System.Drawing.Color.Black;
+            this.tbSongDurationBar.Enabled = false;
+            this.tbSongDurationBar.Location = new System.Drawing.Point(12, 4);
+            this.tbSongDurationBar.Name = "tbSongDurationBar";
+            this.tbSongDurationBar.Size = new System.Drawing.Size(476, 18);
+            this.tbSongDurationBar.TabIndex = 8;
+            this.tbSongDurationBar.TabStop = false;
+            this.tbSongDurationBar.Child = this.sliderSongDuration;
             // 
             // lbSongLength
             // 
@@ -227,12 +238,12 @@ namespace MusicPlayer.view.form
             // 
             this.lbTitle.AutoSize = true;
             this.lbTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lbTitle.Font = new System.Drawing.Font("Bahnschrift SemiLight Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.ForeColor = System.Drawing.Color.White;
-            this.lbTitle.Location = new System.Drawing.Point(22, 2);
+            this.lbTitle.Location = new System.Drawing.Point(22, 5);
             this.lbTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(73, 19);
+            this.lbTitle.Size = new System.Drawing.Size(81, 17);
             this.lbTitle.TabIndex = 1;
             this.lbTitle.Text = "Now playing";
             // 
@@ -280,17 +291,6 @@ namespace MusicPlayer.view.form
             this.btnMinimizeWindow.TabIndex = 2;
             this.btnMinimizeWindow.UseVisualStyleBackColor = false;
             this.btnMinimizeWindow.Click += new System.EventHandler(this.OnClickBtnMinimizeWindow);
-            // 
-            // tbSongDurationBar
-            // 
-            this.tbSongDurationBar.BackColor = System.Drawing.Color.Black;
-            this.tbSongDurationBar.Enabled = false;
-            this.tbSongDurationBar.Location = new System.Drawing.Point(12, 4);
-            this.tbSongDurationBar.Name = "tbSongDurationBar";
-            this.tbSongDurationBar.Size = new System.Drawing.Size(476, 18);
-            this.tbSongDurationBar.TabIndex = 8;
-            this.tbSongDurationBar.TabStop = false;
-            this.tbSongDurationBar.Child = this.sliderSongDuration;
             // 
             // gradientPanel2
             // 

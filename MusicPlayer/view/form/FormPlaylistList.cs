@@ -155,8 +155,7 @@ namespace MusicPlayer.view.form
                 {
                     ButtonPlaylist selectedButton = flPanel.Controls[index + 1] as ButtonPlaylist;
                     bool isPlaylistUpdatedSuccessfully = viewModel.UpdatePlaylistNameToDbAndReturnResult(index, renameDialog.NewName);
-                    if (isPlaylistUpdatedSuccessfully)
-                        ChangeButtonPlaylistName(selectedButton, renameDialog.NewName);
+                    if (isPlaylistUpdatedSuccessfully) ChangeButtonPlaylistName(selectedButton, renameDialog.NewName);
                 }
             }
         }

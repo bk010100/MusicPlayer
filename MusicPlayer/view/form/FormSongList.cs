@@ -1,5 +1,6 @@
 ﻿using MusicPlayer.common.dialog;
 using MusicPlayer.model.model;
+using MusicPlayer.view.dialog;
 using MusicPlayer.viewmodel;
 using System;
 using System.Collections.Generic;
@@ -129,7 +130,8 @@ namespace MusicPlayer.view.form
                 };
                 dialogEditSong.ShowDialog();
 
-                if (dialogEditSong.SongInfo != null)
+                bool isDialogReturnEditedNameAndArtist = dialogEditSong.SongName != null && dialogEditSong.SongArtist != null;
+                if (isDialogReturnEditedNameAndArtist)
                 {
                     viewModel.EditSongToDb(selectedSong,
                                            dialogEditSong.SongName,
@@ -150,7 +152,8 @@ namespace MusicPlayer.view.form
                 DialogChoosePlaylist dialogChoosePlaylist = new DialogChoosePlaylist();
                 dialogChoosePlaylist.ShowDialog();
 
-                if (dialogChoosePlaylist.Playlist != null)
+                bool isDialogReturnPlaylist = dialogChoosePlaylist.Playlist != null;
+                if (isDialogReturnPlaylist)
                 {
                     viewModel.AddSongToPlaylistInDb(selectedSong.Id, dialogChoosePlaylist.Playlist.Id);
                 }
@@ -169,7 +172,8 @@ namespace MusicPlayer.view.form
                 }
                 dialogDeleteSong.ShowDialog();
 
-                if (dialogDeleteSong.DeleteConfirm)
+                bool isUserConfirmDelete = dialogDeleteSong.DeleteConfirm;
+                if (isUserConfirmDelete)
                 {
                     Song selectedSong = dgSongList.dataGrid.SelectedItem as Song;
                     viewModel.DeleteSongFromDb(selectedSong);
@@ -197,15 +201,37 @@ namespace MusicPlayer.view.form
 
 
         private void OnClickBtnAddSong(object sender, EventArgs e)
+        {            
+            if (viewModel.CheckIfThisFormWasOpenFromPlaylist()) AddSongToPlaylistOnDialogResult();
+            else AddNewSongOnDialogResult();
+
+            dgSongList.dataGrid.Items.Refresh();            
+        }
+
+
+        private void AddSongToPlaylistOnDialogResult()
+        {
+            DialogAddSongToPlaylist dialogAddSong = new DialogAddSongToPlaylist()
+            {
+                AllSongs = viewModel.OtherSongs
+            };
+            dialogAddSong.ShowDialog();
+
+            bool isDialogReturnNewSong = dialogAddSong.NewSongId != -1;
+            if (isDialogReturnNewSong) viewModel.AddSongToPlaylistInDb(dialogAddSong.NewSongId);
+        }
+
+
+        private void AddNewSongOnDialogResult()
         {
             DialogAddSong dialogAddSong = new DialogAddSong();
             dialogAddSong.ShowDialog();
 
-            if (dialogAddSong.NewSong != null)
+            bool isDialogReturnNewSong = dialogAddSong.NewSong != null;
+            if (isDialogReturnNewSong)
             {
                 viewModel.MoveSongToMainDir(dialogAddSong.FilePath);
                 viewModel.AddSongToDb(dialogAddSong.NewSong);
-                dgSongList.dataGrid.Items.Refresh();
             }
         }
 

@@ -123,6 +123,7 @@ namespace MusicPlayer.view.form
         {
             lbSongTimer.Text = "00:00";
             sliderSongDuration.slider.Value = 0;
+            btnPlay.BackgroundImage = Properties.Resources.play_64;
             SetTextForDisplaySongLength();
             SetTitleToPlayingSongName();
         }
